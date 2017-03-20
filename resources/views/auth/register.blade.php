@@ -68,7 +68,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="loc" class="col-md-4 control-label">Location</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="loc" name="location_id">
+                                    @if ($location)
+                                        @foreach($location as $loc)
 
+                                            <option value="{{$loc->id}}">{{$loc->location}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -83,7 +95,7 @@
     </div>
 </div>
 
-<h1 align="center">Wefixer</h1>
+<h1 align="center">WeFixer</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -154,6 +166,58 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                        <label for="loc" class="col-md-4 control-label">Location</label>
+                        <div class="col-md-6">
+                        <select class="form-control" id="loc" name="location_id">
+                            @if ($location)
+                                @foreach($location as $loc)
+
+                            <option value="{{$loc->id}}">{{$loc->location}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="pro" class="col-md-4 control-label">Profession</label>
+                            <div class="col-md-6">
+                                <select class="form-control" id="loc" name="profession_id">
+                                    @if ($profession)
+                                        @foreach($profession as $pro)
+
+                                            <option value="{{$pro->id}}">{{$pro->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

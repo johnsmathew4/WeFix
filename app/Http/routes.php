@@ -44,4 +44,4 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 
 
-Route::get('/fix', 'RoleController@index');
+Route::get('/profile', 'RoleController@index');

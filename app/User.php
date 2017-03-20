@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role_id',
+        'name', 'email', 'password','role_id','location_id','profession_id',
     ];
 
     /**
@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function location()
+    {
+        return $this->belongsTo('App\Location');
+    }
+    public function profession()
+    {
+        return $this->belongsTo('App\Profession');
+    }
 }
