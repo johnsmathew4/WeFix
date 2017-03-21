@@ -198,7 +198,12 @@
                             </div>
                         </div>
 
+                        @if ($profession)
+                            @foreach($profession as $pro)
 
+                             {{$pro->id}}{{$pro->name}}
+                            @endforeach
+                        @endif
 
 
 
