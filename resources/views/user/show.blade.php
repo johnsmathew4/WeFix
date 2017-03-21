@@ -8,9 +8,10 @@
                     <div class="panel-heading">Welcome</div>
 
                     <div class="panel-body">
-                        <a href="{{route('user.profession',['pro'=>'painter'])}}">painter</a>
-                        <a href="{{route('user.profession',['pro'=>'Plumber'])}}">plumber</a>
-                        <a href="{{route('user.profession',['pro'=>'Electrician'])}}">electriciam</a>
+                     @foreach($user as $us)
+                        <p>{{$us->email}}  {{$us->name}} </p>
+
+                         @endforeach
                     </div>
                 </div>
             </div>

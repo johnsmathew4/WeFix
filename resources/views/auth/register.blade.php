@@ -24,7 +24,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <input  type="hidden"  name="profession_id" value=0>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -198,12 +198,7 @@
                             </div>
                         </div>
 
-                        @if ($profession)
-                            @foreach($profession as $pro)
 
-                             {{$pro->id}}{{$pro->name}}
-                            @endforeach
-                        @endif
 
 
 

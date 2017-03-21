@@ -24,6 +24,8 @@ Route::group(['middleware'=>'wefixer'] ,function() {
     });
 
 });
+
+Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
 Route::get('/user'  ,function(){
 return view('user.index');
 });
