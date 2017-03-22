@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\User;
+
 use Auth;
 use Illuminate\Http\Request;
 
@@ -22,6 +24,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        
         if(Auth::check())
 {
     {if( Auth::user()->role_id==0)
