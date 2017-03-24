@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+Route::get('/profile', 'RoleController@index');
+
+
+
+
+
+
+
+
 Route::group(['middleware'=>'wefixer'] ,function() {
 
 
@@ -25,10 +36,48 @@ Route::group(['middleware'=>'wefixer'] ,function() {
 
 });
 
-Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/user'  ,function(){
 return view('user.index');
+   
+
 });
+
+Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
+
+Route::get('/user/profile/{id}',['as' => 'user.profile', 'uses' => 'ProController@profile']);
+
+Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
+Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
 Route::post('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
@@ -46,4 +95,4 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 
 
-Route::get('/profile', 'RoleController@index');
+

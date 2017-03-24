@@ -18,24 +18,27 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php
+                            $i=1;
+                            @endphp
+
                             @foreach($user as $us)
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>{{$us->name}}</td>
-                                <td>{{$us->email}}</td>
-                                <td>{{$us->rating}}</td>
-                            </tr>
-                           @endforeach
+
+                                <th scope="row">{{$i++}}</th>
+
+
+
+
+                                <td>  <a style="display: block ;text-decoration: none" href="profile/{{$us->id}}"> {{$us->name}}  </a></td>
+                                <td><a style="display: block;text-decoration: none " href="profile/{{$us->id}}">  {{$us->email}} </a></td>
+                                <td><a style="display: block ;text-decoration: none" href="profile/{{$us->id}}"> {{$us->rating}} </a></td>
+
+
+                                </tr>
+                            @endforeach
 
                             </tbody>
                         </table>
-
-
-
-
-
-
-
 
 
 
