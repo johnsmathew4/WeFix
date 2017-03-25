@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('css')
+
+    <style type="text/css">
+    .tooltip-inner {
+
+height:80px;
+        background-color: #204d74;
+        padding-top: 32px;
+    width: 950px;
+    }
+    </style>
+
+@endsection
+
 @section('content')
 
 
@@ -14,7 +28,28 @@ Email :{{$us->email}}
 <br>
 <p></p>
 
+    modal on clicling this button
 <button type="button" class=" btn btn-primary">Book</button>
+    <br>
+    <br>
+    <br>
+    <br>
+   Pay 100rs for booking
+
+    <form method="POST" action="{{ route('user.pay',['id' => $us->id])  }}">
+
+        {!! $edit ? '<input type="hidden" name="_method" value="DELETE">' : " " !!}
+        {{ csrf_field() }}
+
+
+
+
+
+        <button type="submit" class=" col-sm-offset-1 btn btn-primary">Pay</button>
+    </form>
+
+
+
 <br>
 <p></p>
 
@@ -22,12 +57,13 @@ Email :{{$us->email}}
 
 
 <form method="POST" action="{{ $edit ? route('user.feed.edit',['id' => $us->id]) : route('user.feeding',['id' => $us->id]) }}">
+    <div  data-toggle="tooltip" data-placement="top" title="BOOK A WORKER TO RATE" title="BOOK A WORKER TO RATE" >
     <div class="form-group">
         {!! $edit ? '<input type="hidden" name="_method" value="PATCH">' : " " !!}
         {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleSelect1">Rating</label>
-        <select class="form-control" id="rating" name="rating">
+        <select class="form-control" id="rating" name="rating"   disabled>
             @for($i=1;$i<=5;$i++)
             <option @if($edit) @if($i==$feed->rating) {{'selected="selected"'}} @endif @endif value="{{$i}}">{{$i}}</option>
            @endfor
@@ -36,16 +72,20 @@ Email :{{$us->email}}
 
     <div class="form-group">
         <label for="exampleTextarea">Feedback</label>
-        <textarea class="form-control" id="feed" rows="3"  name="feed"> {{$edit ? $feed->feedback : ""}}</textarea>
+        <textarea class="form-control" id="feed" rows="3"  name="feed" disabled> {{$edit ? $feed->feedback : ""}}</textarea>
     </div>
 
 
-
     </div>
 
 
-    <button type="submit" class="col-sm-2 btn btn-primary">{{$edit ? "Edit Feed" : "Post Feed"}}</button>
+        <button   class="col-sm-2 btn  btn-danger"  data-toggle="popover" data-trigger="focus" title="WARNING!!"
+           data-content="Book Worker to  Rate">Post Feed</button>
+        
+    <button type="submit" class="col-sm-2 btn btn-primary"   disabled>{{$edit ? "Edit Feed" : "Post Feed"}}</button>
+    </div>
 </form>
+
     @if($edit)
         <form method="POST" action="{{ route('user.feed.delete',['id' => $us->id])  }}">
 
@@ -113,10 +153,24 @@ Email :{{$us->email}}
 
 
 
-
+<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 
 
 
 
 
 @endsection
+
+
+@section('jquery')
+
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+
+    })
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+    })
+
+    $('#example').popover(options)
+    @endsection

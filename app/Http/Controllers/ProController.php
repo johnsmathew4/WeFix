@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Feed;
 use App\Location;
 use App\Profession;
@@ -113,5 +114,28 @@ public function  show($pro)
             ->delete();
        return redirect()->back();
 
+    }
+
+    public function pay($id)
+    {
+        $book = new Book();
+
+        $book->worker_id =$id;
+
+
+        $book->user_id =Auth::user()->id;
+
+        $book->save();
+        $status="Payment Successfull  ......Worker Booked";
+
+        return  redirect('/users/order')->with('status',$status);
+
+    }
+
+    public function order()
+    {
+
+
+        return view('user.order');
     }
 }

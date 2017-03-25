@@ -65,6 +65,12 @@ Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProControll
 Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
 Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
 
+Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
+
+Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
+
+
 
 
 
