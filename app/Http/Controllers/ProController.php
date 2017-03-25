@@ -50,14 +50,22 @@ public function  show($pro)
             ->where('user_id', Auth::user()->id)
 
             ->count();
+
+        $booked = DB::table('books')
+            ->where('worker_id', $id)
+            ->where('user_id', Auth::user()->id)
+
+            ->count();
+
+
+
         $feed =Feed::where('workerid', $id)
             ->where('user_id', Auth::user()->id)
             ->first();
         $feeding=Feed::where('workerid', $id)->get();
 
-        
-            
-           return view('user.profile',compact('us','edit','feed','feeding'));
+
+          return view('user.profile',compact('us','edit','feed','feeding','booked'));
 
 
 
@@ -134,8 +142,11 @@ public function  show($pro)
 
     public function order()
     {
+          $orders=Book::where('user_id',Auth::user()->id)
+              ->orderBy('created_at','desc')
+              ->get();
 
 
-        return view('user.order');
+        return view('user.order',compact('orders'));
     }
 }

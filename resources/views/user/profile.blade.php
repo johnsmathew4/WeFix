@@ -38,7 +38,7 @@ Email :{{$us->email}}
 
     <form method="POST" action="{{ route('user.pay',['id' => $us->id])  }}">
 
-        {!! $edit ? '<input type="hidden" name="_method" value="DELETE">' : " " !!}
+
         {{ csrf_field() }}
 
 
@@ -57,13 +57,13 @@ Email :{{$us->email}}
 
 
 <form method="POST" action="{{ $edit ? route('user.feed.edit',['id' => $us->id]) : route('user.feeding',['id' => $us->id]) }}">
-    <div  data-toggle="tooltip" data-placement="top" title="BOOK A WORKER TO RATE" title="BOOK A WORKER TO RATE" >
+    <div  @if(!$booked) data-toggle="tooltip" data-placement="top" title="BOOK A WORKER TO RATE" title="BOOK A WORKER TO RATE" @endif >
     <div class="form-group">
         {!! $edit ? '<input type="hidden" name="_method" value="PATCH">' : " " !!}
         {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleSelect1">Rating</label>
-        <select class="form-control" id="rating" name="rating"   disabled>
+        <select class="form-control" id="rating" name="rating"    @if(!$booked) disabled @endif >
             @for($i=1;$i<=5;$i++)
             <option @if($edit) @if($i==$feed->rating) {{'selected="selected"'}} @endif @endif value="{{$i}}">{{$i}}</option>
            @endfor
@@ -72,18 +72,20 @@ Email :{{$us->email}}
 
     <div class="form-group">
         <label for="exampleTextarea">Feedback</label>
-        <textarea class="form-control" id="feed" rows="3"  name="feed" disabled> {{$edit ? $feed->feedback : ""}}</textarea>
+        <textarea class="form-control" id="feed" rows="3"  name="feed"  @if(!$booked) disabled @endif > {{$edit ? $feed->feedback : ""}}</textarea>
     </div>
 
 
     </div>
 
 
-        <button   class="col-sm-2 btn  btn-danger"  data-toggle="popover" data-trigger="focus" title="WARNING!!"
-           data-content="Book Worker to  Rate">Post Feed</button>
-        
-    <button type="submit" class="col-sm-2 btn btn-primary"   disabled>{{$edit ? "Edit Feed" : "Post Feed"}}</button>
-    </div>
+        @if(!$booked) <button   class="col-sm-2 btn  btn-danger"  data-toggle="popover" data-trigger="focus" title="WARNING!!"
+                                data-content="Book Worker to  Rate">Post Feed</button> @endif
+
+
+
+        @if($booked) <button type="submit" class="col-sm-2 btn btn-primary"   >{{$edit ? "Edit Feed" : "Post Feed"}}</button>
+    </div> @endif
 </form>
 
     @if($edit)
@@ -153,7 +155,6 @@ Email :{{$us->email}}
 
 
 
-<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 
 
 
