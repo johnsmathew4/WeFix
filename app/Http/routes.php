@@ -11,8 +11,12 @@
 |
 */
 
+
+use App\Location;
+
 Route::get('/', function () {
-    return view('welcome');
+    $location=Location::all();
+    return view('welcome')->with('location', $location);
 });
 
 
@@ -26,14 +30,53 @@ Route::get('/profile', 'RoleController@index');
 
 
 
-Route::group(['middleware'=>'wefixer'] ,function() {
 
 
-    Route::get('/wefixer', function () {
 
-        return view('wefixer.index');
+Route::group(['middleware'=>'auth'] ,function() {
+
+    Route::get('/profile', 'RoleController@index');
+
+    Route::group(['middleware'=>'wefixer'] ,function() {
+
+
+        Route::get('/wefixer', function () {
+
+            return view('wefixer.index');
+        });
+
     });
 
+
+
+
+
+
+
+
+    Route::get('/user'  ,function(){
+        return view('user.index');
+
+
+    });
+
+    Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
+
+    Route::get('/user/profile/{id}',['as' => 'user.profile', 'uses' => 'ProController@profile']);
+
+    Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+    Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
+    Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
+
+    Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+    Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
+
+    Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
+
+
+
+
+
 });
 
 
@@ -51,24 +94,6 @@ Route::group(['middleware'=>'wefixer'] ,function() {
 
 
 
-Route::get('/user'  ,function(){
-return view('user.index');
-   
-
-});
-
-Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
-
-Route::get('/user/profile/{id}',['as' => 'user.profile', 'uses' => 'ProController@profile']);
-
-Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
-Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
-Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
-
-Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
-Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
-
-Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
 
 
 
@@ -78,11 +103,13 @@ Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order'
 
 
 
+Route::get('registeruser', function()
+{
+    $location=Location::all();
+    return view('auth.registeruser')->with('location', $location);
 
-
-
-
-
+}
+    );
 
 
 Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);

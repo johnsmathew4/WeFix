@@ -1,11 +1,8 @@
 @extends('home')
-
 @section('extra')
-
-
-<div id="modal1" class="modal">
+<div id="modal2" class="modal">
     <div class="modal-content">
-        <h3 style="color:grey;" align="center">Wefixer</h3>
+ <h3 style="color:grey;" align="center">User</h3>
         <div class="row">
             <form  class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                 {{ csrf_field() }}
@@ -23,10 +20,10 @@
                     </div>
                 </div>
 
-                <input  type="hidden"  name="role_id" value=0>
+                <input  type="hidden"  name="role_id" value=1>
                  <div class="row">
                     <div style="{{$errors->has('email') ? 'color: red;': "" }}" class="input-field col s12">
-                        <input value="{{ old('email') }}"onclick = "{{$errors->has('email') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
+                        <input value="{{ old('email') }}" onclick = "{{$errors->has('email') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('email') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="email"  name="email" type="email" class="validate">
                         <label  style="{{$errors->has('email') ? "color: red;"  : ""}} for="email">Email</label>
                         <small style="{{$errors->has('email') ? "color:red" : ""}}" >  @if ($errors->has('email'))
@@ -45,7 +42,7 @@
 
               <div class="row">
                     <div style="{{$errors->has('password') ? 'color: red;': "" }}" class="input-field col s12">
-                        <input value="{{ old('password') }}"onclick = "{{$errors->has('password') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
+                        <input value="{{ old('password') }}" onclick = "{{$errors->has('password') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('password') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="password"  name="password" type="password" class="validate">
                         <label  style="{{$errors->has('password') ? "color: red;"  : ""}} for="password">Password</label>
                         <small style="{{$errors->has('password') ? "color:red" : ""}}" >  @if ($errors->has('password'))
@@ -73,7 +70,7 @@
                
                <div class="input-field col s12">
     <select id="loc" name="location_id">
-     
+      
         @if ($location)
                                 @foreach($location as $loc)
 
@@ -88,19 +85,7 @@
 
 
 
-              <div class="input-field col s12">
-    <select name="profession_id">
-     
-      @if ($profession)
-                                        @foreach($profession as $pro)
-
-                                            <option value="{{$pro->id}}">{{$pro->name}}</option>
-                                        @endforeach
-                                    @endif
-    </select>
-    <label>Profession</label>
-  </div>
-
+        <input  type="hidden"  name="profession_id" value=0>
 
 
 
@@ -132,24 +117,21 @@
             </form>
         </div>
 
-
-
-    </div>
-
+     </div>
 </div>
-  
+
 @endsection
-
 @section('jquery')
-
+@if(Auth::guest())
     <script type="text/javascript">
 
 
  
 $(document).ready(function() {
-          $('#modal1').modal('open');
+          $('#modal2').modal('open');
         
     });
     
     </script>
+    @endif
     @endsection

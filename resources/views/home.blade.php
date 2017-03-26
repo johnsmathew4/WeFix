@@ -8,16 +8,17 @@
             color: white;
 
         }
-        body{
 
-            background-color: #e40046;
-        }
         .page-footer
         {
             text-align: center;
         }
 
     </style>
+
+@yield('extra')
+
+
     <div class="parallax-container">
         <h2>How can we help you today?</h2>
 
@@ -30,14 +31,14 @@
         <div class="row ">
             <div class="col l3">
 
-                <div class="card hoverable" style="height:250px; width:250px;">
-                    <div class="card-image waves-effect waves-left:100p waves-light">
+                <div class="card" style="height:250px; width:250px;">
+                    <div class="card-image waves-effect waves-left:100pxaves-light">
                         <img class="activator" src="images/carpenter21.jpg" style="height:170px; ">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">Carpentry<i class="material-icons right">more_vert</i></span>
                     </div>
-                    <div class="card-reveal" ">
+                    <div class="card-reveal" style="background-color:#b2d1f7;">
                         <span class="card-title grey-text text-darken-4" >Carpentry<i class="material-icons right">close</i></span>
                         <p><i>"The best carpenters make the fewest chips...."</i></p>
                         <a href="/wefix/carpenter.php">Click to know more</a>
@@ -46,7 +47,7 @@
                 </div>
             </div>
             <div class="col l3">
-                <div class="card  hoverable" style=" height:250px; width:250px;">
+                <div class="card" style=" height:250px; width:250px;">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="images/Plumbing21.jpg" style="height:170px;">
                     </div>
@@ -54,14 +55,14 @@
                         <span class="card-title activator grey-text text-darken-4">Plumbing<i class="material-icons right">more_vert</i></span>
 
                     </div>
-                    <div class="card-reveal" ">
+                    <div class="card-reveal" style="background-color:#b2d1f7;">
                         <span class="card-title grey-text text-darken-4">Plumbing<i class="material-icons right">close</i></span>
                         <p>Here is some more information about this product that is only revealed once clicked on.</p>
                     </div>
                 </div>
             </div>
             <div class="col l3">
-                <div class="card  hoverable" style="height:250px; width:250px;" >
+                <div class="card" style="height:250px; width:250px;" >
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="images/cleaner22.jpg" style="height:170px;">
                     </div>
@@ -69,14 +70,14 @@
                         <span class="card-title activator grey-text text-darken-4">Cleaning<i class="material-icons right">more_vert</i></span>
 
                     </div>
-                    <div class="card-reveal" ">
+                    <div class="card-reveal" style="background-color:#b2d1f7;">
                         <span class="card-title grey-text text-darken-4">Cleaning<i class="material-icons right">close</i></span>
                         <p>Here is some more information about this product that is only revealed once clicked on.</p>
                     </div>
                 </div>
             </div>
             <div class="col l3">
-                <div class="card  hoverable" style="height:250px; width:250px;">
+                <div class="card" style="height:250px; width:250px;">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="images/painter21.jpg" style="height:170px;">
                     </div>
@@ -84,7 +85,7 @@
                         <span class="card-title activator grey-text text-darken-4">Painting<i class="material-icons right">more_vert</i></span>
 
                     </div>
-                    <div class="card-reveal" ">
+                    <div class="card-reveal" style="background-color:#b2d1f7;">
                         <span class="card-title grey-text text-darken-4">Painting<i class="material-icons right">close</i></span>
                         <p>Here is some more information about this product that is only revealed once clicked on.</p>
                     </div>
@@ -135,4 +136,3 @@
     </div>
 
 @endsection
-
