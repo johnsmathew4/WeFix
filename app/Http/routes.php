@@ -40,10 +40,10 @@ Route::group(['middleware'=>'auth'] ,function() {
     Route::group(['middleware'=>'wefixer'] ,function() {
 
 
-        Route::get('/wefixer', function () {
+        Route::get('/wefixer','WefixController@index');
 
-            return view('wefixer.index');
-        });
+        Route::get('/wefixer/profile/{id}',['as' => 'wefixer.profile', 'uses' => 'WefixController@profile']);
+        
 
     });
 
