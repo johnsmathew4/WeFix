@@ -22,16 +22,14 @@ public function  show($pro)
     $id=$prof->id;
     $locate=Auth::user()->location_id;
 
-    $user = DB::table('users')
-        ->where('profession_id',$id)
+    $user = User::where('profession_id',$id)
         ->where('role_id',0)
         ->where('location_id',$locate)
         ->orderBy('rating', 'desc')
         ->get();
 
 
-
-    return view('user.show')->with('user',$user);
+ return view('user.show',compact('user'));
 
 
 
@@ -87,6 +85,8 @@ public function  show($pro)
           $feed->user_id =Auth::user()->id;
 
            $feed->save();
+
+        $this->rater($id);
         return  redirect()->back();
     }
 
@@ -110,6 +110,7 @@ public function  show($pro)
 
 
       $feed->update();
+        $this->rater($id);
        return  redirect()->back();
 
     }
@@ -120,6 +121,7 @@ public function  show($pro)
         $feed =Feed::where('workerid', $id)
             ->where('user_id', Auth::user()->id)
             ->delete();
+        $this->rater($id);
        return redirect()->back();
 
     }
@@ -134,7 +136,7 @@ public function  show($pro)
         $book->user_id =Auth::user()->id;
 
         $book->save();
-        $status="Payment Successfull  ......Worker Booked";
+        $status=" Successfull  ......Worker Booked";
 
         return  redirect('/users/order')->with('status',$status);
 
@@ -149,4 +151,61 @@ public function  show($pro)
 
         return view('user.order',compact('orders'));
     }
+
+   public function rater($id)
+   {
+       $count =Feed::where('workerid', $id)
+              ->count();
+
+       $sum=Feed::where('workerid', $id)
+           ->sum('rating');
+        $u=User::find($id);
+       $u->rating=$sum/$count;
+       $u->update();
+       
+   }
+    
+    
+    public function edit_profile()
+ {
+
+     $location=Location::all();
+    $profession=Profession::all();
+    $user=User::find(Auth::user()->id);
+
+
+
+
+
+
+    return view('user.edit',compact('location','profession','user'));
+
+ }
+
+
+    public function edited_profile(Request $request)
+    {
+
+
+
+        $this->validate($request, [
+            'name' => 'required',
+
+        ]);
+        $location=Location::all();
+        $profession=Profession::all();
+        $user=User::find(Auth::user()->id);
+
+        $user->location_id= $request['location_id'];
+        $user->name=$request['name'];
+        $user->email=$request['email'];
+        $user->update();
+
+
+
+
+        return redirect()->back();
+
+    }
+
 }

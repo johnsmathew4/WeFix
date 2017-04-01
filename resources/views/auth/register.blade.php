@@ -14,7 +14,7 @@
                     <div style="{{$errors->has('name') ? 'color: red;': "" }}" class="input-field col s12">
                         <input value="{{ old('name') }}" onclick = "{{$errors->has('name') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('name') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="name"  name="name" type="text" class="validate">
-                        <label  style="{{$errors->has('name') ? "color: red;"  : ""}} for="name">Name</label>
+                        <label  style="{{$errors->has('name') ? "color: red;"  : ""}}" for="name">Name</label>
                         <small style="{{$errors->has('name') ? "color:red" : ""}}" >  @if ($errors->has('name'))
 
                                 {{ $errors->first('name') }}
@@ -28,7 +28,7 @@
                     <div style="{{$errors->has('email') ? 'color: red;': "" }}" class="input-field col s12">
                         <input value="{{ old('email') }}"onclick = "{{$errors->has('email') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('email') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="email"  name="email" type="email" class="validate">
-                        <label  style="{{$errors->has('email') ? "color: red;"  : ""}} for="email">Email</label>
+                        <label  style="{{$errors->has('email') ? "color: red;"  : ""}}" for="email">Email</label>
                         <small style="{{$errors->has('email') ? "color:red" : ""}}" >  @if ($errors->has('email'))
 
                                 {{ $errors->first('email') }}
@@ -47,7 +47,7 @@
                     <div style="{{$errors->has('password') ? 'color: red;': "" }}" class="input-field col s12">
                         <input value="{{ old('password') }}"onclick = "{{$errors->has('password') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('password') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="password"  name="password" type="password" class="validate">
-                        <label  style="{{$errors->has('password') ? "color: red;"  : ""}} for="password">Password</label>
+                        <label  style="{{$errors->has('password') ? "color: red;"  : ""}}" for="password">Password</label>
                         <small style="{{$errors->has('password') ? "color:red" : ""}}" >  @if ($errors->has('password'))
 
                                 {{ $errors->first('password') }}
@@ -61,7 +61,7 @@
                     <div style="{{$errors->has('password_confirmation') ? 'color: red;': "" }}" class="input-field col s12">
                         <input onclick = "{{$errors->has('password_confirmation') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('password_confirmation') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="password_confirmation"  name="password_confirmation" type="password" class="validate">
-                        <label  style="{{$errors->has('password_confirmation') ? "color: red;"  : ""}} for="password_confirmation">Confirm Password</label>
+                        <label  style="{{$errors->has('password_confirmation') ? "color: red;"  : ""}}" for="password_confirmation">Confirm Password</label>
                         <small style="{{$errors->has('password_confirmation') ? "color:red" : ""}}" >  @if ($errors->has('password_confirmation'))
 
                                 {{ $errors->first('password_confirmation') }}

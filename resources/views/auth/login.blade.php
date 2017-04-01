@@ -16,7 +16,7 @@
                     <div style="{{$errors->has('email') ? 'color: red;': "" }}" class="input-field col s12">
                         <input onclick = "{{$errors->has('email') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
           onmouseover= "{{$errors->has('email') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="email"  name="email" type="email" class="validate">
-                        <label  style="{{$errors->has('email') ? "color: red;"  : ""}} for="email">Email</label>
+                        <label  style="{{$errors->has('email') ? "color: red;"  : ""}}" for="email">Email</label>
                         <small style="{{$errors->has('email') ? "color:red" : ""}}" >  @if ($errors->has('email'))
 
                                 {{ $errors->first('email') }}

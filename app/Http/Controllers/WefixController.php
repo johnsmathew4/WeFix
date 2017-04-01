@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Feed;
+use App\Location;
+use App\Profession;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -43,5 +45,49 @@ class WefixController extends Controller
 
 
     }
+
+
+    public function edit_profile()
+    {
+
+        $location=Location::all();
+        $profession=Profession::all();
+        $user=User::find(Auth::user()->id);
+
+
+
+
+
+
+        return view('wefixer.edit',compact('location','profession','user'));
+
+    }
+
+
+    public function edited_profile(Request $request)
+    {
+
+
+
+        $this->validate($request, [
+            'name' => 'required',
+
+        ]);
+        $location=Location::all();
+        $profession=Profession::all();
+        $user=User::find(Auth::user()->id);
+
+        $user->location_id= $request['location_id'];
+        $user->name=$request['name'];
+        $user->email=$request['email'];
+        $user->update();
+
+
+
+
+        return redirect()->back();
+
+    }
+
 
 }

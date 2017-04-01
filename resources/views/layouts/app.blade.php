@@ -41,9 +41,7 @@
             width: 96%;
             background-color: #eceff1;
         }
-        .card :hover{
-            background-color: #ffcdd2;
-        }
+
         .card-panel{
             height: 200px;
         }

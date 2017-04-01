@@ -165,6 +165,8 @@ Email :{{$us->email}}
 
 @section('jquery')
 
+    <script type="text/javascript">
+
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 
@@ -174,4 +176,5 @@ Email :{{$us->email}}
     })
 
     $('#example').popover(options)
+    </script>
     @endsection

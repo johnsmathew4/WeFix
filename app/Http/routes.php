@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::get('/profile', 'RoleController@index');
 
+Route::get('/count/{id}', 'ProController@rater');
 
 
 
@@ -43,6 +44,9 @@ Route::group(['middleware'=>'auth'] ,function() {
         Route::get('/wefixer','WefixController@index');
 
         Route::get('/wefixer/profile/{id}',['as' => 'wefixer.profile', 'uses' => 'WefixController@profile']);
+        Route::get('/wefix/edit',['as' => 'wefix.edit', 'uses' => 'WefixController@edit_profile']);
+
+        Route::post('/wefixer/edited',['as' => 'wefix.edited', 'uses' => 'WefixController@edited_profile']);
         
 
     });
@@ -73,9 +77,9 @@ Route::group(['middleware'=>'auth'] ,function() {
 
     Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
 
+    Route::get('/users/edit',['as' => 'user.edit', 'uses' => 'ProController@edit_profile']);
 
-
-
+    Route::post('/users/edited',['as' => 'user.edited', 'uses' => 'ProController@edited_profile']);
 
 });
 
@@ -85,10 +89,13 @@ Route::group(['middleware'=>'auth'] ,function() {
 
 
 
+Route::get('/admin',['as' => 'admin', 'uses' => 'Admin@index']);
+
+Route::get('/admin/location',['as' => 'admin.location', 'uses' => 'Admin@location']);
 
 
-
-
+Route::post('/admin/location',['as' => 'admin.add', 'uses' => 'Admin@store']);
+Route::delete('/admin/location/{id}',['as' => 'admin.location.delete', 'uses' => 'Admin@location_delete']);
 
 
 
@@ -110,6 +117,7 @@ Route::get('registeruser', function()
 
 }
     );
+
 
 
 Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
