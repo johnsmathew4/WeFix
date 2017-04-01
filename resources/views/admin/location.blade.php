@@ -3,6 +3,11 @@
 
 @section('content')
 
+
+    @php
+    $c=1;
+    @endphp
+
         <h2  align="center" >Locations</h2>
 
 
@@ -55,10 +60,12 @@
 <div class="row">
 
     @foreach($location as $loc)
-
+     @php
+        $c++;
+    @endphp
 
             <div class="col s12 m6">
-                <div class="card hoverable  red accent-3">
+                <div class="card hoverable  @if($c%3) red @else teal @endif">
 
 <h2 style="padding-top: 50px" align="center " class="white-text">{{$loc->location}}</h2>
 
@@ -86,6 +93,18 @@
 
 </div>
 
+
+        <ul class="pagination">
+            <li class="disabled"><a href="{{$location->previousPageUrl()}}"><i class="material-icons">chevron_left</i></a></li>
+            @for($i=1;$i<=$location->total()/2;$i++)
+            <li class="@if($i==$location->currentPage()) active @endif "><a href="{{$location->url($i)}}">{{$i}}</a></li>
+
+           @endfor
+            <li class="waves-effect"><a href="{{$location->nextPageUrl()}}"><i class="material-icons">chevron_right</i></a></li>
+
+        </ul>
+
+
 </div>
 
 
@@ -99,7 +118,7 @@
 
     <script type="text/javascript">
 
-        {!!  $errors->has('location') ? "$(document).ready(function() {
+        {!!$errors->has('location') ? "$(document).ready(function() {
             $('#modal1').modal('open');      });": "" !!}
 
 

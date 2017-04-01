@@ -34,17 +34,9 @@
             height: 200px;
             margin-left: 10px;
         }
-        .box{
-            border-style: solid;
-            border-width: 1px;
-            border-color: grey;
-            width: 96%;
-            background-color: #eceff1;
-        }
 
-        .card-panel{
-            height: 200px;
-        }
+
+
     </style>
 
 
@@ -68,16 +60,17 @@
 
 
 <ul class="side-nav" id="mobile-demo">
-    <li><a style="font-size: 17px;" href="{{ url('/') }}">Home</a></li>
-    <li><a style=";font-size: 17px;" href="{{ url('/about') }}">About Us</a></li>
+
+    <li ><a style="font-size: 17px;" href="{{ url('/') }}"><i class="material-icons left">home</i>Home</a></li>
+    <li><a style=";font-size: 17px;" href="{{ url('/about') }}"><i class="material-icons left">people</i>About Us</a></li>
     @if (Auth::guest())
 
-        <li><a class="waves-effect waves-light" style="font-size: 17px;" href="{{ url('/login') }}">Login</a></li>
+        <li><a class="waves-effect waves-light" style="font-size: 17px;" href="{{ url('/login') }}"><i class="material-icons left">input</i>Login</a></li>
 
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header">Register<i class="material-icons">arrow_drop_down</i></a>
+                    <a class="collapsible-header"><i class="material-icons left">assignment</i>Register<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a  style="color:#e40046;background-color: white;" href="{{ url('/register') }}">BE A WEFIXER</a></li>
@@ -92,6 +85,25 @@
 
 
     @else
+
+        @if(Auth::user()->role_id==2)
+
+            <li><a class="waves-effect waves-light"  href="{{ url('/admin') }}"><i class="material-icons left">input</i>Dashboard</a></li>
+
+        @endif
+            @if(Auth::user()->role_id==0)
+
+                <li><a class="waves-effect waves-light"  href="{{ url('/wefixer') }}"><i class="material-icons left">input</i>Orders</a></li>
+                <li><a class="waves-effect waves-light"  href="{{ url('/wefix/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+
+            @endif
+            @if(Auth::user()->role_id==1)
+
+                <li><a class="waves-effect waves-light"  href="{{ url('/users/order') }}"><i class="material-icons left">input</i>Orders</a></li>
+                <li><a class="waves-effect waves-light"  href="{{ url('/users/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+
+            @endif
+
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
@@ -122,26 +134,44 @@
 
 
 <div class="navbar-fixed">
-<nav>
-    <div class="nav-wrapper">
+    <nav>
+        <div class="nav-wrapper">
 
-        <a class="brand-logo">WeFix</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul  class="right hide-on-med-and-down">
-            <li><a style="color:#ffffff;font-size: 17px;" href="{{ url('/') }}">Home</a></li>
-            @if (Auth::guest())
-                <li><a class="waves-effect waves-light dropdown-button"  data-activates="dropdown1">Register<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/login') }}">Login</a></li>
-            @else
-                <li><a class="dropdown-button" data-activates="dropdown2">
-                        {{ Auth::user()->email }}<i class="material-icons right">arrow_drop_down</i></a>
-            @endif
-            <li><a style="color:#ffffff;font-size: 17px;" href="{{ url('/about') }}">About Us</a></li>
+            <a class="brand-logo"><i class="material-icons right">build</i>WeFix</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul  class="right hide-on-med-and-down">
+                <li ><a style="color:#ffffff;font-size: 17px;" href="{{ url('/') }}"><i class="material-icons left">home</i>Home</a></li>
+                @if (Auth::guest())
+                    <li><a class="waves-effect waves-light dropdown-button"  data-activates="dropdown1"><i class="material-icons left">assignment</i>Register<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/login') }}"><i class="material-icons left">input</i>Login</a></li>
+                @else
 
-        </ul>
+                @if(Auth::user()->role_id==2)
 
-    </div>
-</nav>
+                        <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/admin') }}"><i class="material-icons left">input</i>Dashboard</a></li>
+
+                    @endif
+                    @if(Auth::user()->role_id==0)
+
+                        <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/wefixer') }}"><i class="material-icons left">input</i>Orders</a></li>
+                        <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/wefix/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+
+                    @endif
+                    @if(Auth::user()->role_id==1)
+
+                        <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/users/order') }}"><i class="material-icons left">input</i>Orders</a></li>
+                        <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/users/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+
+                    @endif
+                    <li><a class="dropdown-button" data-activates="dropdown2">
+                            {{ Auth::user()->email }}<i class="material-icons right">arrow_drop_down</i></a>
+                @endif
+                <li><a style="color:#ffffff;font-size: 17px;" href="{{ url('/about') }}"><i class="material-icons left">people</i>About Us</a></li>
+
+            </ul>
+
+        </div>
+    </nav>
 </div>
 
 <!-- Modal Structure -->
@@ -153,7 +183,7 @@
 @yield('content')
 
 
- <script src="{{asset('images\jquery.min.js')}}"></script>
+<script src="{{asset('images\jquery.min.js')}}"></script>
 
 <!-- Compiled and minified JavaScript -->
 <script type="text/javascript" src="{{asset('images\materialize.js')}}"></script>
@@ -191,13 +221,14 @@
 
         $('.carousel').carousel({
 
-            dist:-60,
 
-            shift:10,
 
-            indicators:true
 
-        }
+
+                    indicators:true
+
+
+                }
 
 
         );

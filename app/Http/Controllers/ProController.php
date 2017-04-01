@@ -29,7 +29,7 @@ public function  show($pro)
         ->get();
 
 
- return view('user.show',compact('user'));
+ return view('user.show',compact('user','pro'));
 
 
 

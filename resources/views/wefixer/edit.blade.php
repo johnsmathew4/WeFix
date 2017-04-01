@@ -69,8 +69,8 @@
 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" style=" background-color: #e40046;" class="btn btn-primary">
-                            <i class="fa fa-btn fa-user"></i> Register
+                        <button type="submit" style=" background-color: #e40046;" class="btn btn-primary teal waves-ripple  ">
+                            <i class="fa fa-btn fa-user"></i>Apply Changes
                         </button>
                     </div>
                 </div>

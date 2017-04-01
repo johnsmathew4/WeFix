@@ -27,10 +27,15 @@ class RoleController extends Controller
         
         if(Auth::check())
 {
-    {if( Auth::user()->role_id==0)
+    {
+        if( Auth::user()->role_id==0)
     {
         return redirect('/wefixer');
     }
+        if( Auth::user()->role_id==2)
+        {
+            return redirect('/admin');
+        }
 
         return redirect('/user');
 

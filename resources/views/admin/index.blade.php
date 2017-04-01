@@ -2,53 +2,75 @@
 
 
 @section('content')
-
-
-    Dashboard
-
-1st card
-
-<br>
-
-
-<br>
-<a  href="#"  > Registeres Users   {{$users}}</a>
-
-    <br>
-
-2nd card
-
-<br>
-<a  href="#"  > Active WWorkers {{$active}}</a>
-
-<br>
+<div class="container">
+   <h5 align="center"> Dashboard </h5>
 
 
 
-<br>
+<div class="row">
+
+    <a href="{{route('admin.user')}}">
+          <div class="col s12 m6">
+              <div class="card hoverable  blue">
+
+              <h3 style="padding-top: 50px" align="center " class="white-text">Registered Users </h3>
+
+              <h4 align="center " class="white-text">{{$users}}</h4>
+                  </div>
+          </div>
+    </a>
+
+    <a href="{{route('admin.active')}}">
+        <div class="col s12 m6">
+            <div class="card hoverable  teal">
+
+                <h3 style="padding-top: 50px" align="center " class="white-text">Active Workers</h3>
+
+                <h4 align="center " class="white-text">{{$active}}</h4>
+            </div>
+        </div>
+    </a>
 
 
-3nd card
 
-<br>
 
-<a  href="#"  >   Inactive WWorkers {{$inactive}}</a>
-<br>
+</div>
 
 
 
-<br>
+    <div class="row">
 
-4thnd card
+        <a href="{{route('admin.location')}}">
+            <div class="col s12 m6">
+                <div class="card hoverable  red">
 
-<br>
-<a  href="{{route('admin.location')}}"  >  Locations {{$location}}</a>
+                    <h3 style="padding-top: 50px" align="center " class="white-text">Locations</h3>
 
-<br>
+                    <h4 align="center " class="white-text">{{$location}}</h4>
+                </div>
+            </div>
+        </a>
+
+        <a href="{{route('admin.inactive')}}#">
+            <div class="col s12 m6">
+                <div class="card hoverable  amber darken-1">
+
+                    <h3 style="padding-top: 50px" align="center " class="white-text">InActive Workers</h3>
+
+                    <h4 align="center " class="white-text">{{$inactive}}</h4>
+                </div>
+            </div>
+        </a>
 
 
 
-<br>
 
+    </div>
+
+
+
+
+
+</div>
 
 @endsection

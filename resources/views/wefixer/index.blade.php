@@ -9,7 +9,7 @@
     <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Profession</th>
+        <th>Email</th>
         <th>Date</th>
 
     </tr>

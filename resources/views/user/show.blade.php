@@ -1,52 +1,79 @@
+
 @extends('layouts.app')
 
 @section('content')
+    <style type="text/css">
+        body {
+            background: #ffffff;
+
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 2px;
+            display: inline-block;
+            height: 300px;
+
+            width: 300px;
+            box-shadow: none;
+        }
+
+
+        .card:hover {
+            box-shadow: 0 10px 40px #bdbdbd;
+        }
+
+
+
+.container
+{
+
+    text-align: center;
+}
+
+
+
+
+    </style>
+
+
     <div class="container">
+        <h4>Here are the top {{$pro }}s from {{ Auth::user()->location->location}} </h4>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">WiFixers</div>
+            @foreach($user as $us)
+                <div class="col s12 m4">
 
 
-
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Mail</th>
-                                <th>Rating</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @php
-                            $i=1;
-                            @endphp
-
-                            @foreach($user as $us)
-
-                                <th scope="row">{{$i++}}</th>
+                    <a href="profile/{{$us->id}}"> <div class="card">
 
 
+                            <div class="card-image">
+                                <img  src="../images/avatar.png" style="height:150px;width:150px;margin-left:75px;border-radius: 50%;">
+                            </div>
+                            <div class="card-content" >
+
+                                <p  style="font-family: Roboto;font-size: large;font-weight: bold; word-spacing:20px;" > {{$us->name}}  </p>
+                                <p style="font-family: Roboto;font-size: large;font-weight: bold" >  {{$us->email}} </p>
+                                <p style="font-family: Roboto;font-size: large;font-weight: bold;word-spacing:20px;" > <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span> {{$us->rating}} </p>
+                            </div>
 
 
-                                <td>  <a style="display: block ;text-decoration: none" href="profile/{{$us->id}}"> {{$us->name}}  </a></td>
-                                <td><a style="display: block;text-decoration: none " href="profile/{{$us->id}}">  {{$us->email}} </a></td>
-                                <td><a style="display: block ;text-decoration: none" href="profile/{{$us->id}}"> {{$us->rating}} </a></td>
+                        </div></a>
 
-
-                                </tr>
-                            @endforeach
-
-                            </tbody>
-                        </table>
-
-
-
-                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
+
+
+   
+   
+
+
+
+
+
+   
+        
+ 

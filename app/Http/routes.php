@@ -34,7 +34,9 @@ Route::get('/count/{id}', 'ProController@rater');
 
 
 
-Route::group(['middleware'=>'auth'] ,function() {
+Route::group(['middleware'=>'auth'] ,function()
+  {
+
 
     Route::get('/profile', 'RoleController@index');
 
@@ -53,52 +55,71 @@ Route::group(['middleware'=>'auth'] ,function() {
 
 
 
+      Route::group(['middleware'=>'user'] ,function() {
+
+
+          Route::get('/user'  ,function(){
+              return view('user.index');
+
+
+          });
+
+          Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
+
+          Route::get('/user/profile/{id}',['as' => 'user.profile', 'uses' => 'ProController@profile']);
+
+          Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+          Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
+          Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
+
+          Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
+          Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
+
+          Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
+
+          Route::get('/users/edit',['as' => 'user.edit', 'uses' => 'ProController@edit_profile']);
+
+          Route::post('/users/edited',['as' => 'user.edited', 'uses' => 'ProController@edited_profile']);
+
+
+      });
+
+
+
+
+      Route::group(['middleware'=>'admin'] ,function() {
+
+
+
+          Route::get('/admin',['as' => 'admin', 'uses' => 'Admin@index']);
+
+          Route::get('/admin/location',['as' => 'admin.location', 'uses' => 'Admin@location']);
+
+
+          Route::post('/admin/location',['as' => 'admin.add', 'uses' => 'Admin@store']);
+          Route::delete('/admin/location/{id}',['as' => 'admin.location.delete', 'uses' => 'Admin@location_delete']);
+
+          Route::get('/admin/inactive',['as' => 'admin.inactive', 'uses' => 'Admin@inactive']);
+
+          Route::delete('/admin/inactive/{id}',['as' => 'admin.wefixer.delete', 'uses' => 'Admin@wefixer_delete']);
+          Route::post('/admin/inactive/{id}',['as' => 'admin.wefixer.active', 'uses' => 'Admin@wefixer_active']);
+
+          Route::get('/admin/active',['as' => 'admin.active', 'uses' => 'Admin@active']);
+
+          Route::post('/admin/active/{id}',['as' => 'admin.wefixer.inactive', 'uses' => 'Admin@wefixer_inactive']);
+
+          Route::get('/admin/user',['as' => 'admin.user', 'uses' => 'Admin@user']);
+
+
+      });
 
 
 
 
 
-    Route::get('/user'  ,function(){
-        return view('user.index');
 
-
-    });
-
-    Route::get('/user/{pro}',['as' => 'user.profession', 'uses' => 'ProController@show']);
-
-    Route::get('/user/profile/{id}',['as' => 'user.profile', 'uses' => 'ProController@profile']);
-
-    Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
-    Route::patch('/user/profile/{id}',['as' => 'user.feed.edit', 'uses' => 'ProController@edit']);
-    Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
-
-    Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
-    Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
-
-    Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
-
-    Route::get('/users/edit',['as' => 'user.edit', 'uses' => 'ProController@edit_profile']);
-
-    Route::post('/users/edited',['as' => 'user.edited', 'uses' => 'ProController@edited_profile']);
 
 });
-
-
-
-
-
-
-
-Route::get('/admin',['as' => 'admin', 'uses' => 'Admin@index']);
-
-Route::get('/admin/location',['as' => 'admin.location', 'uses' => 'Admin@location']);
-
-
-Route::post('/admin/location',['as' => 'admin.add', 'uses' => 'Admin@store']);
-Route::delete('/admin/location/{id}',['as' => 'admin.location.delete', 'uses' => 'Admin@location_delete']);
-
-
-
 
 
 
