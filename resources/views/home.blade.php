@@ -16,97 +16,95 @@
             text-align: center;
         }
         body{
-            background-color: #f4f3f0;
+
         }
 
         .hovereffect {
-            width: 100%;
-            height: 100%;
-            float: left;
-            overflow: hidden;
-            position: relative;
-            text-align: center;
-            cursor: default;
+            width:100%;
+            height:100%;
+            float:left;
+            overflow:hidden;
+            position:relative;
+            text-align:center;
+            cursor:default;
         }
 
         .hovereffect .overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            background-color: rgba(0,0,0,0.6);
-            opacity: 0;
-            filter: alpha(opacity=0);
-            -webkit-transform: translate(460px, -100px) rotate(180deg);
-            -ms-transform: translate(460px, -100px) rotate(180deg);
-            transform: translate(460px, -100px) rotate(180deg);
-            -webkit-transition: all 0.2s 0.4s ease-in-out;
-            transition: all 0.2s 0.4s ease-in-out;
+            width:100%;
+            height:100%;
+            position:absolute;
+            overflow:hidden;
+            top:0;
+            left:0;
+            opacity:0;
+            background-color:rgba(0,0,0,0.5);
+            -webkit-transition:all .4s ease-in-out;
+            transition:all .4s ease-in-out
         }
 
         .hovereffect img {
-            display: block;
-            position: relative;
-            -webkit-transition: all 0.2s ease-in;
-            transition: all 0.2s ease-in;
+            display:block;
+            position:relative;
+            -webkit-transition:all .4s linear;
+            transition:all .4s linear;
         }
 
         .hovereffect h2 {
-            text-transform: uppercase;
-            color: #fff;
-            text-align: center;
-            position: relative;
-            font-size: 17px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.6);
+            text-transform:uppercase;
+            color:#fff;
+            text-align:center;
+            position:relative;
+            font-size:17px;
+            background:rgba(0,0,0,0.6);
+            -webkit-transform:translatey(-100px);
+            -ms-transform:translatey(-100px);
+            transform:translatey(-100px);
+            -webkit-transition:all .2s ease-in-out;
+            transition:all .2s ease-in-out;
+            padding:10px;
         }
 
         .hovereffect a.info {
-            display: inline-block;
-            text-decoration: none;
-            padding: 7px 14px;
-            text-transform: uppercase;
-            color: #fff;
-            border: 1px solid #fff;
-            margin: 50px 0 0 0;
-            background-color: transparent;
-            -webkit-transform: translateY(-200px);
-            -ms-transform: translateY(-200px);
-            transform: translateY(-200px);
-            -webkit-transition: all 0.2s ease-in-out;
-            transition: all 0.2s ease-in-out;
+            text-decoration:none;
+            display:inline-block;
+            text-transform:uppercase;
+            color:#fff;
+            border:1px solid #fff;
+            background-color:transparent;
+            opacity:0;
+            filter:alpha(opacity=0);
+            -webkit-transition:all .2s ease-in-out;
+            transition:all .2s ease-in-out;
+            margin:50px 0 0;
+            padding:7px 14px;
         }
 
         .hovereffect a.info:hover {
-            box-shadow: 0 0 5px #fff;
+            box-shadow:0 0 5px #fff;
+        }
+
+        .hovereffect:hover img {
+            -ms-transform:scale(1.2);
+            -webkit-transform:scale(1.2);
+            transform:scale(1.2);
         }
 
         .hovereffect:hover .overlay {
-            opacity: 1;
-            filter: alpha(opacity=100);
-            -webkit-transition-delay: 0s;
-            transition-delay: 0s;
-            -webkit-transform: translate(0px, 0px);
-            -ms-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
+            opacity:1;
+            filter:alpha(opacity=100);
         }
 
-        .hovereffect:hover h2 {
-            -webkit-transform: translateY(0px);
-            -ms-transform: translateY(0px);
-            transform: translateY(0px);
-            -webkit-transition-delay: 0.5s;
-            transition-delay: 0.5s;
+        .hovereffect:hover h2,.hovereffect:hover a.info {
+            opacity:1;
+            filter:alpha(opacity=100);
+            -ms-transform:translatey(0);
+            -webkit-transform:translatey(0);
+            transform:translatey(0);
         }
 
         .hovereffect:hover a.info {
-            -webkit-transform: translateY(0px);
-            -ms-transform: translateY(0px);
-            transform: translateY(0px);
-            -webkit-transition-delay: 0.3s;
-            transition-delay: 0.3s;
+            -webkit-transition-delay:.2s;
+            transition-delay:.2s;
         }
 
 
@@ -206,7 +204,7 @@
 
 
     <div class="container-fluid " style="color:#e40046 " >
-        <footer class="page-footer" style="background-color:#f4f3f0;">
+        <footer class="page-footer" style="background-color:white;">
             <div class="container ">
                 <h3 >Why Choose Us? </h3>
 

@@ -41,6 +41,8 @@ Route::group(['middleware'=>'auth'] ,function()
     Route::get('/profile', 'RoleController@index');
 
     Route::group(['middleware'=>'wefixer'] ,function() {
+        
+        
 
 
         Route::get('/wefixer','WefixController@index');
@@ -53,7 +55,14 @@ Route::group(['middleware'=>'auth'] ,function()
 
     });
 
+      Route::get('/wefix/inactive',function()
+      {
+          if(Auth::user()->role_id==0 && Auth::user()->isactive==0)
 
+          return view('wefixer.inactive');
+
+          return redirect('/');
+      } );
 
       Route::group(['middleware'=>'user'] ,function() {
 

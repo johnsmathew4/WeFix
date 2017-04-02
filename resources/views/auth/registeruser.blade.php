@@ -86,7 +86,30 @@
                         <label>Location</label>
                     </div>
 
+                    <div class="row">
+                        <div style="{{$errors->has('number') ? 'color: red;': "" }}" class="input-field col s12">
+                            <i class="material-icons prefix"style="color:#e40046 ">phone</i>
+                            <input value="{{ old('number') }}" onclick = "{{$errors->has('number') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
+                                   onmouseover= "{{$errors->has('number') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="number"  name="number" type="number" class="validate">
+                            <label  style="{{$errors->has('number') ? "color: red;"  : ""}} "for="number">Mobile No</label>
+                            <small style="{{$errors->has('number') ? "color:red" : ""}}" >  @if ($errors->has('number'))
 
+                                    {{ $errors->first('number') }}
+
+                                @endif </small>
+                        </div>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix"style="color:#e40046 ">store</i>
+                        <textarea name='address' id="textarea1" class="materialize-textarea">{{ old('address')}}</textarea>
+                        <label for="textarea1">Address</label>
+                        <small style="{{$errors->has('address') ? "color:red" : ""}}" >  @if ($errors->has('address'))
+
+                                {{ $errors->first('address') }}
+
+                            @endif </small>
+                    </div>
 
 
 

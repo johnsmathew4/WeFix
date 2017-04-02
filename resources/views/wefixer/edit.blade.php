@@ -21,6 +21,22 @@
                     </div>
                 </div>
 
+
+
+                <div class="row">
+                    <div style="{{$errors->has('number') ? 'color: red;': "" }}" class="input-field col s12">
+
+                        <input value="{{ $user->number }}" onclick = "{{$errors->has('number') ? "this.style.boxShadow = '0 0 0 red'" : ""}}"
+                               onmouseover= "{{$errors->has('number') ? "this.style.borderBottom = '1px solid red'" : ""}}" id="number"  name="number" type="number" class="validate">
+                        <label  style="{{$errors->has('number') ? "color: red;"  : ""}} "for="number">Mobile No</label>
+                        <small style="{{$errors->has('number') ? "color:red" : ""}}" >  @if ($errors->has('number'))
+
+                                {{ $errors->first('number') }}
+
+                            @endif </small>
+                    </div>
+                </div>
+
                 <input  type="hidden"  name="role_id" value=1>
                 <div class="row">
                     <div style="{{$errors->has('email') ? 'color: red;': "" }}" class="input-field col s12">
@@ -45,7 +61,7 @@
                             @if ($location)
                                 @foreach($location as $loc)
 
-                                    <option value="{{$loc->id}}">{{$loc->location}}</option>
+                                    <option @if($loc->id==$user->location_id)  {{'selected="selected"'}} @endif value="{{$loc->id}}">{{$loc->location}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -54,19 +70,37 @@
                 </div>
 <div class="row">
 
+
+
+
                 <div class="input-field col s12">
                     <select name="profession_id">
 
                         @if ($profession)
                             @foreach($profession as $pro)
 
-                                <option value="{{$pro->id}}">{{$pro->name}}</option>
+                                {{$pro->id}} {{$user->profession_id}}
+
+                                <option @if($pro->id==$user->profession_id)  {{'selected="selected"'}} @endif value="{{$pro->id}}">{{$pro->name}}</option>
                             @endforeach
                         @endif
                     </select>
                     <label>Profession</label>
                 </div>
 </div>
+
+
+
+                <div class="input-field col s12">
+
+                    <textarea name='address' id="textarea1" class="materialize-textarea">{{ $user->address}}</textarea>
+                    <label for="textarea1">Address</label>
+                    <small style="{{$errors->has('address') ? "color:red" : ""}}" >  @if ($errors->has('address'))
+
+                            {{ $errors->first('address') }}
+
+                        @endif </small>
+                </div>
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <button type="submit" style=" background-color: #e40046;" class="btn btn-primary teal waves-ripple  ">

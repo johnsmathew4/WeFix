@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFeedsTable extends Migration
+class CreateWordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateFeedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('feeds', function (Blueprint $table) {
+        Schema::create('words', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('workerid');
-            $table->string('feedback');
-            $table->double('rating', 5, 2);
+            $table->string('word');
+            $table->integer('weight');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateFeedsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feeds');
+        Schema::drop('words');
     }
 }

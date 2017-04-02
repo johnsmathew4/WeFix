@@ -2,14 +2,14 @@
 
 @section('css')
 
-    <style type="text/css">
-        .tooltip-inner {
 
-            height:80px;
-            background-color: #204d74;
-            padding-top: 32px;
-            width: 950px;
-        }
+
+    <style type="text/css">
+
+
+
+
+
     </style>
 
 @endsection
@@ -23,37 +23,41 @@
 
             <div  class="card horizontal" style="margin-top:20px;padding-top: 10px;height: 500px;padding-left: 5px;">
 
-                <div class="card-image materialboxed" >
-                    <img  src="{{asset('images/avatar.png')}}"   style="height: 250px;width: 400px;margin-left: 60px;">
+                <div class="card-image " >
+                    <img style="width: 400px" src="{{asset('images/avatar.png')}}"   style="height: 250px;width: 400px;margin-left: 60px;">
+
+                    <div class="card-action">
+                        <a  href="#modal4" style="width:150px;margin-left:70px;"   class="btn waves-light waves-effect red">HIRE NOW</a>
+
+                    </div>
+
+
                 </div>
+
                 <div class="card-stacked">
 
                     <div class="card-content">
-                        <h5>Wefixer : {{$us->name}}</h5>
-                        <h5>Email : {{$us->email}}</h5>
-                        <h5>Contact : </h5>
+                        <span style="color: gray;font-size: 80%">Name</span>   <h5> {{$us->name}}</h5>
+                        <span style="color: gray;font-size: 80%">Email</span> <h5> {{$us->email}}</h5>
+                        <span style="color: gray;font-size: 80%">Location</span> <h5>  {{$us->location->location}}</h5>
+                        <span style="color: gray;font-size: 80%">Profession</span> <h5>  {{$us->profession->name}}</h5>
+                        <span style="color: gray;font-size: 80%">Contact</span><h5> {{$us->number}} </h5>
                         <a href="#ratings"><div   style="height: 30px;width:60px;background-color: #e40046;border-radius: 5px;"><span style="color: white;font-size: large;font-weight: bold;padding-left: 10px;">{{$us->rating}} ☆ </span>
                             </div></a>
 
                         <a href="#review" ><div   style="margin-top:10px;height:35px;width:200px;background-color:#EEEEEE;color: black;font-family: Arial;border-radius: 5px;font-size: 20px;text-align: center;">Rate and Review</div></a>
 
+
                         <div class="card-action" style="margin-top: 10px;padding-left: 0px;">
-                            <a>Check Availability</a>
-                            if (present){
-                            show as available
-                            }
-                            else{
-                            show as not available
-                            }
-                        </div>
-                        <h5 style="font-weight: bold;">Description</h5>
-                        <p>Some text about the wefixer</p>
+                          </div>
+
+
                     </div>
 
 
-                    <!-- Modal Trigger -->
 
-                    <a  href="#modal4" style="width:150px;margin-left:40px;background-color: #e40046;"   class="btn waves-light waves-effect">HIRE NOW</a>
+
+
 
 
 
@@ -90,27 +94,34 @@
 
 
                     <div><span style="color: black;font-size: 40px;font-weight: bold;padding-left: 10px;">{{$us->rating}}☆ RATINGS </span></div>
+                <h5 style="margin-left: 30px; color:gray;" >{{$r}} Ratings</h5>
                     <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">1☆</span>
-                    <div class="progress" style="width: 70%;margin-left: 30px;">
-                        <div class="determinate" style="width: 10%"></div>
+              <span style="margin-left: 30px; font-weight: bold">{{$r1}}</span>
+                    <div class="progress" style="width: 50%;margin-left: 30px;">
+                        <div class="determinate" style="width:@if($r!=0) {{($r1/$r)*100}}@endif%"></div>
                     </div>
 
-                    <div><span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">2☆</span></div>
-                    <div class="progress" style="width: 70%;margin-left: 30px;">
-                        <div class="determinate" style="width: 70%"></div>
+                    <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">2☆</span>
+                    <span style="margin-left: 30px; font-weight: bold">{{$r2}}</span>
+
+                    <div class="progress" style="width: 50%;margin-left: 30px;">
+                        <div class="determinate" style="width:@if($r!=0) {{($r2/$r)*100}}@endif%"></div>
                     </div>
-                    <div><span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">3☆</span></div>
-                    <div class="progress" style="width: 70%;margin-left: 30px;">
+                    <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">3☆</span>
+                    <span style="margin-left: 30px; font-weight: bold">{{$r3}}</span>
+                    <div class="progress" style="width: 50%;margin-left: 30px;">
                         <div><span >1☆</span></div>
-                        <div class="determinate" style="width: 70%"></div>
+                        <div class="determinate" style="width:@if($r!=0) {{($r3/$r)*100}}@endif%"></div>
                     </div>
-                    <div><span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">4☆</span></div>
-                    <div class="progress" style="width: 70%;margin-left: 30px;">
-                        <div class="determinate" style="width: 70%"></div>
+                    <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">4☆</span>
+                    <span style="margin-left: 30px; font-weight: bold">{{$r4}}</span>
+                    <div class="progress" style="width: 50%;margin-left: 30px;">
+                        <div class="determinate" style="width:@if($r!=0) {{($r4/$r)*100}}@endif%"></div>
                     </div>
-                    <div><span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;" >5☆</span></div>
-                    <div class="progress" style="width: 70%;margin-left: 30px;">
-                        <div class="determinate" style="width: 70%"></div>
+                    <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;" >5☆</span>
+                    <span style="margin-left: 30px; font-weight: bold">{{$r5}}</span>
+                    <div class="progress" style="width: 50%;margin-left: 30px;">
+                        <div class="determinate" style="width:@if($r!=0) {{($r5/$r)*100}}@endif% "></div>
 
 
                     </div>
@@ -152,7 +163,7 @@
                             </div>
 
 
-                            @if(!$booked) <button   class="col-sm-2 btn  btn-danger "onclick="Materialize.toast('You have to book a worker', 4000)">Post Feed</button> @endif
+                            @if(!$booked)  <a class=" red  btn" onclick="Materialize.toast('Book To Worker To Rate', 4000)">Post!</a> @endif
 
 
 
@@ -196,7 +207,7 @@
 
 
 
-
+@if($feeding)
 
 
     <ul class="collection" style="width: 70%;margin: 0 auto;">
@@ -206,7 +217,7 @@
 
             @foreach($feeding as $f)
                 <img  src="{{asset('images/avatar.png')}}"  alt="" class="circle">
-                <p>{{$f->rating}}<span>☆</span> <br>
+                <p  >{{$f->rating}}<span>☆</span> <br>
                     {{$f->feedback}} <br>
                     {{$f->updated_at->diffForHumans() }}
 
@@ -216,19 +227,11 @@
         </li>
     </ul>
 
+@else
+    <h4 style="text-align: center;"> No  Feeds</h4>
 
 
-
-
-
-    </div>
-
-
-
-
-
-
-
+@endif
 
 
 

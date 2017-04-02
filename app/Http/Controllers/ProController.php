@@ -8,6 +8,7 @@ use App\Location;
 use App\Profession;
 
 use App\User;
+use App\Word;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -16,6 +17,12 @@ use App\Http\Requests;
 
 class ProController extends Controller
 {
+    
+    
+    
+    
+    
+    
 public function  show($pro)
 {
     $prof= Profession::where('name',$pro)->first();
@@ -24,6 +31,7 @@ public function  show($pro)
 
     $user = User::where('profession_id',$id)
         ->where('role_id',0)
+        ->where('isactive',1)
         ->where('location_id',$locate)
         ->orderBy('rating', 'desc')
         ->get();
@@ -54,16 +62,48 @@ public function  show($pro)
             ->where('user_id', Auth::user()->id)
 
             ->count();
+        $r = DB::table('feeds')
+            ->where('workerid', $id)
+            ->count();
 
+        $r1 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>=',0)
+            ->where('rating','<=',1)
 
+            ->count();
+        $r2 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',1)
+            ->where('rating','<=',2)
+
+            ->count();
+        $r3 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',2)
+            ->where('rating','<=',3)
+
+            ->count();
+        $r4 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',3)
+            ->where('rating','<=',4)
+
+            ->count();
+        $r5 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',4)
+            ->where('rating','<=',5)
+
+            ->count();
 
         $feed =Feed::where('workerid', $id)
             ->where('user_id', Auth::user()->id)
             ->first();
         $feeding=Feed::where('workerid', $id)->get();
 
-
-          return view('user.profile',compact('us','edit','feed','feeding','booked'));
+   
+         return view('user.profile',compact('us','edit','feed','feeding','booked','r','r1','r2','r3','r4','r5'));
 
 
 
@@ -121,8 +161,53 @@ public function  show($pro)
         $feed =Feed::where('workerid', $id)
             ->where('user_id', Auth::user()->id)
             ->delete();
-        $this->rater($id);
-       return redirect()->back();
+
+        $r = DB::table('feeds')
+            ->where('workerid', $id)
+            ->count();
+
+        $r1 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>=',0)
+            ->where('rating','<=',1)
+            ->count();
+
+        $r2 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',1)
+            ->where('rating','<=',2)
+            ->count();
+
+        $r3 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',2)
+            ->where('rating','<=',3)
+            ->count();
+
+        $r4 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',3)
+            ->where('rating','<=',4)
+            ->count();
+
+        $r5 = DB::table('feeds')
+            ->where('workerid', $id)
+            ->where('rating','>',4)
+            ->where('rating','<=',5)
+            ->count();
+
+        $rate=$r1*1+$r2*2+$r3*3+$r4*4+$r5*5;
+        if($r==0)
+            $rate=0;
+        else
+            $rate=$rate/$r;
+
+        $u=User::find($id);
+
+        $u->rating=$rate;
+        $u->update();
+
+        return redirect()->back();
 
     }
 
@@ -154,15 +239,121 @@ public function  show($pro)
 
    public function rater($id)
    {
-       $count =Feed::where('workerid', $id)
-              ->count();
 
-       $sum=Feed::where('workerid', $id)
-           ->sum('rating');
-        $u=User::find($id);
-       $u->rating=$sum/$count;
+       $words=Word::all();
+       $count=Word::all()->count();
+       $i=0;
+
+       foreach($words as $wor )
+
+       {
+           $i++;
+           $word[$i]=$wor->word;
+           $w[$i]=$wor->weight;
+
+
+
+
+       }
+        $feedrate=0;
+
+       $feed =Feed::where('workerid', $id)
+           ->where('user_id', Auth::user()->id)
+           ->first();
+       $c=0;
+
+       for($i=1;$i<=$count;$i++)
+       {
+
+           if (str_is('*' . $word[$i] . '*', $feed->feedback)) {
+
+               $c++;
+
+               $feedrate += $w[$i];
+           }
+
+
+       }
+
+       $not=0;
+
+       if (str_is( '*not*', $feed->feedback)) {
+            $not=1;
+
+       }
+
+       if($not)
+       {
+           if($feedrate>0)
+               $feedrate = $feedrate/$c;
+               else
+                   $feedrate = $feedrate/$c+5;
+
+       }
+
+        else
+            $feedrate = $feedrate/$c+3;
+
+
+
+
+       $feed->rating = ($feed->rating +$feedrate)/2;
+
+       $feed->update();
+
+
+
+       $r = DB::table('feeds')
+           ->where('workerid', $id)
+           ->count();
+
+       $r1 = DB::table('feeds')
+           ->where('workerid', $id)
+           ->where('rating','>=',0)
+           ->where('rating','<=',1)
+           ->count();
+
+       $r2 = DB::table('feeds')
+           ->where('workerid', $id)
+           ->where('rating','>',1)
+           ->where('rating','<=',2)
+           ->count();
+
+       $r3 = DB::table('feeds')
+           ->where('workerid', $id)
+           ->where('rating','>',2)
+           ->where('rating','<=',3)
+           ->count();
+
+       $r4 = DB::table('feeds')
+           ->where('workerid', $id)
+           ->where('rating','>',3)
+           ->where('rating','<=',4)
+           ->count();
+
+       $r5 = DB::table('feeds')
+           ->where('workerid', $id)
+           ->where('rating','>',4)
+           ->where('rating','<=',5)
+           ->count();
+
+       $rate=$r1*1+$r2*2+$r3*3+$r4*4+$r5*5;
+       if($r==0)
+           $rate=0;
+       else
+           $rate=$rate/$r;
+
+       $u=User::find($id);
+
+       $u->rating=$rate;
        $u->update();
-       
+
+
+
+
+
+
+
    }
     
     
@@ -190,11 +381,16 @@ public function  show($pro)
 
         $this->validate($request, [
             'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'number' => 'required'
 
         ]);
         $location=Location::all();
         $profession=Profession::all();
         $user=User::find(Auth::user()->id);
+        $user->number=$request['number'];
+        $user->address=$request['address'];
 
         $user->location_id= $request['location_id'];
         $user->name=$request['name'];
@@ -204,7 +400,7 @@ public function  show($pro)
 
 
 
-        return redirect()->back();
+        return redirect('/');
 
     }
 

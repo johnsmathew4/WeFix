@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFeedsTable extends Migration
+class AddAddressToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateFeedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('feeds', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('workerid');
-            $table->string('feedback');
-            $table->double('rating', 5, 2);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+          $table->string('address');
         });
     }
 
@@ -28,6 +24,8 @@ class CreateFeedsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feeds');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('address');
+        });
     }
 }

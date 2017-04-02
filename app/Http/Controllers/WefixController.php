@@ -70,15 +70,21 @@ class WefixController extends Controller
 
 
         $this->validate($request, [
+            
             'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'number' => 'required'
 
         ]);
         $location=Location::all();
         $profession=Profession::all();
         $user=User::find(Auth::user()->id);
-
+        $user->profession_id= $request['profession_id'];
         $user->location_id= $request['location_id'];
         $user->name=$request['name'];
+        $user->number=$request['number'];
+        $user->address=$request['address'];
         $user->email=$request['email'];
         $user->update();
 

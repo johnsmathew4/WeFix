@@ -96,7 +96,7 @@
 
         <ul class="pagination">
             <li class="disabled"><a href="{{$location->previousPageUrl()}}"><i class="material-icons">chevron_left</i></a></li>
-            @for($i=1;$i<=$location->total()/2;$i++)
+            @for($i=1;$i<$location->total()/2+1;$i++)
             <li class="@if($i==$location->currentPage()) active @endif "><a href="{{$location->url($i)}}">{{$i}}</a></li>
 
            @endfor

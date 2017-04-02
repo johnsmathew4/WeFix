@@ -17,9 +17,22 @@ class Wefixer
     public function handle($request, Closure $next)
     {
         if(Auth::check()) {
-            if (Auth::user()->role_id == 0) {
-                return $next($request);
+            if (Auth::user()->role_id == 0) 
+            
+            {
+                   if(Auth::user()->isactive==1)
+                   {
+                       return $next($request);
+                   }
+               
+                
+                return redirect('/wefix/inactive');
+                
+                
+                
             }
+            
+            
         }
     return redirect('/');
     }
