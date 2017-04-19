@@ -21,7 +21,7 @@
 
         <div class="col s12 m7">
 
-            <div  class="card horizontal" style="margin-top:20px;padding-top: 10px;height: 500px;padding-left: 5px;">
+            <div  class=" hoverable z-depth-3 card horizontal" style="margin-top:20px;padding-top: 10px;height: 500px;padding-left: 5px;">
 
                 <div class="card-image " >
                     <img style="width: 400px" src="{{asset('images/avatar.png')}}"   style="height: 250px;width: 400px;margin-left: 60px;">
@@ -42,8 +42,47 @@
                         <span style="color: gray;font-size: 80%">Location</span> <h5>  {{$us->location->location}}</h5>
                         <span style="color: gray;font-size: 80%">Profession</span> <h5>  {{$us->profession->name}}</h5>
                         <span style="color: gray;font-size: 80%">Contact</span><h5> {{$us->number}} </h5>
-                        <a href="#ratings"><div   style="height: 30px;width:60px;background-color: #e40046;border-radius: 5px;"><span style="color: white;font-size: large;font-weight: bold;padding-left: 10px;">{{$us->rating}} ☆ </span>
+                        <a href="#ratings"><div   style="height: 38px;background-color: #e40046;width:205px; border-radius: 5px;"><span style="color: white;text-align: center;font-size: 20px;font-weight: bold;padding-left: 10px;">
+                    @php
+                                    $dd=$us->rating - floor($us->rating);
+
+
+                                    @endphp
+
+
+                                    @for($i=1;$i<=5;$i++)
+
+                                        @if($i<=$us->rating)
+
+                                            <i  style="padding-top:5px;color:white;"   class="material-icons">star</i>
+                                        @else
+
+                                            @if($dd>0.3)
+                                                @if($dd=0)
+                                                @endif
+
+                                                <i  style="color:white;"   class="material-icons">star_half</i>
+
+                                            @else
+                                                <i  style="color:white;"   class="material-icons">star_border</i>
+                                            @endif
+
+
+                                        @endif
+
+
+
+
+                                    @endfor
+
+                                            {{$us->rating}}/5
+</span>
+
+                 <span style="padding-bottom: 80px"  >
+
                             </div></a>
+
+
 
                         <a href="#review" ><div   style="margin-top:10px;height:35px;width:200px;background-color:#EEEEEE;color: black;font-family: Arial;border-radius: 5px;font-size: 20px;text-align: center;">Rate and Review</div></a>
 
@@ -88,12 +127,42 @@
 
         <div class="col s12 m7">
 
-            <div  class="card horizontal" style="margin-top:20px;padding-top: 10px;height: 500px;padding-left: 5px;">
+            <div  class=" hoverable z-depth-3 card horizontal" style="margin-top:45px;padding-top: 10px;height: 500px;padding-left: 5px;">
 
                 <div  class="container" style="margin-top:60px; background-color: white">
 
 
-                    <div><span style="color: black;font-size: 40px;font-weight: bold;padding-left: 10px;">{{$us->rating}}☆ RATINGS </span></div>
+                    <div><span style="color: black;font-size: 40px;font-weight: bold;padding-left: 10px;">
+                            @php
+                            $dd=$us->rating - floor($us->rating);
+
+                            @endphp
+                           @for($i=1;$i<=5;$i++)
+
+                               @if($i<=$us->rating)
+
+                                <i  style="color:red;"   class="material-icons">star</i>
+                               @else
+
+                                   @if($dd>0.3)
+                                 @if($dd=0)
+                                     @endif
+
+                                        <i  style="color:red;"   class="material-icons">star_half</i>
+
+                                  @else
+                                    <i  style="color:red;"   class="material-icons">star_border</i>
+                                       @endif
+
+
+                               @endif
+
+
+
+
+                            @endfor
+
+                                {{$us->rating}}/5 </span></div>
                 <h5 style="margin-left: 30px; color:gray;" >{{$r}} Ratings</h5>
                     <span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">1☆</span>
               <span style="margin-left: 30px; font-weight: bold">{{$r1}}</span>
@@ -134,11 +203,11 @@
 
         </div>
     </div>
-    <div  id="review" class="container" style="margin-top: 200px"; >
+    <div  id="review" class="container" style="margin-top: 45px"; >
 
         <div class="col s12 m7">
 
-            <div  class="card  " style="margin-top:20px;padding-top: 10px;height: 300px;padding-left: 5px;">
+            <div  class="   hoverable z-depth-3 card  " style="margin-top:20px;padding-top: 10px;height: 300px;padding-left: 5px;">
                 <div class="container" style="background-color: white;width: 70%;">
                     <form  method="POST" action="{{ $edit ? route('user.feed.edit',['id' => $us->id]) : route('user.feeding',['id' => $us->id]) }}">
                         <div id="review" @if(!$booked) class=" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Book a worker first!!"> @endif
@@ -208,16 +277,48 @@
 
 
 @if($feeding)
+    <div class=" container col s12 m7">
 
-
-    <ul class="collection" style="width: 70%;margin: 0 auto;">
+    <ul class="  hoverable z-depth-3 collection" style="width: 70%;margin: 40px auto;">
         <h4 style="text-align: center;">Ratings and feedback</h4>
         <li class="collection-item avatar">
 
 
             @foreach($feeding as $f)
                 <img  src="{{asset('images/avatar.png')}}"  alt="" class="circle">
-                <p  >{{$f->rating}}<span>☆</span> <br>
+                <p  >
+<span style="color: black;font-size: 20px;font-weight: bold;padding-left: 10px;">
+                    @php
+                    $dd=$f->rating - floor($f->rating);
+
+                    @endphp
+                    @for($i=1;$i<=5;$i++)
+
+                        @if($i<=$f->rating)
+
+                            <i  style="color:red;"   class="material-icons">star</i>
+                        @else
+
+                            @if($dd>0.3)
+                                @if($dd=0)
+                                @endif
+
+                                <i  style="color:red;"   class="material-icons">star_half</i>
+
+                            @else
+                                <i  style="color:red;"   class="material-icons">star_border</i>
+                            @endif
+
+
+                        @endif
+
+
+
+
+                    @endfor
+
+
+                    {{$f->rating}}</span>  <br>
                     {{$f->feedback}} <br>
                     {{$f->updated_at->diffForHumans() }}
 
@@ -226,6 +327,7 @@
             @endforeach
         </li>
     </ul>
+        </div>
 
 @else
     <h4 style="text-align: center;"> No  Feeds</h4>
