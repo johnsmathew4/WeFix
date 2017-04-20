@@ -40,7 +40,28 @@
 
                 <a style="display: block ;text-decoration: none"  href="{{route('user.profile',['id'=> $order->worker->id])}} "> {{$i++}}.  {{$order->worker->name}}</a>
                 {{$order->worker->profession->name}}<br>
-                {{$order->updated_at->diffForHumans() }}
+                Booked :{{$order->created_at->diffForHumans() }}
+               @if($order->finish==1)
+                   <br>
+
+
+
+
+                   Finished:{{$order->updated_at->diffForHumans() }}
+                @else
+
+                   @if($order->accept==1)
+                    <form method="POST" action="{{ route('finish',['id' => $order->id])}}">
+                        {{ csrf_field() }}
+                        <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class="modal-action modal-close btn waves-light waves-effect">Finished</button>
+                    </form>
+                      @elseif($order->accept==2)
+                       <h6 style="color: #ff000e">Work Rejected</h6>
+                       @else
+                        <h6 style="color: #54ff33">Pending</h6>
+                       @endif
+
+                @endif
 
 
                 <hr>

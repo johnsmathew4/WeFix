@@ -51,7 +51,9 @@ Route::group(['middleware'=>'auth'] ,function()
         Route::get('/wefix/edit',['as' => 'wefix.edit', 'uses' => 'WefixController@edit_profile']);
 
         Route::post('/wefixer/edited',['as' => 'wefix.edited', 'uses' => 'WefixController@edited_profile']);
-        
+        Route::post('/wefixer/accept/{id}',['as' => 'accept', 'uses' => 'WefixController@accept']);
+        Route::post('/wefixer/reject/{id}',['as' => 'reject', 'uses' => 'WefixController@reject']);
+        Route::post('/wefixer/active/{id}',['as' => 'active', 'uses' => 'WefixController@active']);
 
     });
 
@@ -90,7 +92,7 @@ Route::group(['middleware'=>'auth'] ,function()
 
           Route::post('/users/edited',['as' => 'user.edited', 'uses' => 'ProController@edited_profile']);
 
-
+          Route::post('/users/finish/{id}',['as' => 'finish', 'uses' => 'ProController@finish']);
       });
 
 

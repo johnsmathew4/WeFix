@@ -292,6 +292,7 @@ public function  show($pro)
        }
 
         else
+         if($c!=0)
             $feedrate = $feedrate/$c+3;
 
 
@@ -402,6 +403,18 @@ public function  show($pro)
 
         return redirect('/');
 
+    }
+    
+    public function finish($id)
+    {
+        $book=Book::find($id);
+        $book->finish=1;
+        $book->update();
+        
+        return redirect()->back();
+        
+            
+        
     }
 
 }

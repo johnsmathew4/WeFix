@@ -54,7 +54,10 @@
 
                                 <p  style="font-family: Roboto;font-size: large;font-weight: bold; word-spacing:20px;" > {{$us->name}}  </p>
                                 <p style="font-family: Roboto;font-size: large;font-weight: bold" >  {{$us->email}} </p>
-                                <p style="font-family: Roboto;font-size: large;font-weight: bold;" >    @php
+                                @if($us->rating==0)
+                                    <p style="font-family: Roboto;font-size: large;font-weight: bold;" >Not Rated </p>
+                                @else
+                                    <p style="font-family: Roboto;font-size: large;font-weight: bold;" >    @php
                                         $dd=$us->rating - floor($us->rating);
 
 
@@ -86,6 +89,12 @@
 
                                         @endfor
 {{$us->rating}}/5
+
+
+                                </p>
+
+                                    @endif
+
                             </div>
 
 

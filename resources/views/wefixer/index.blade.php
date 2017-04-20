@@ -1,41 +1,159 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 align="center" >Orders</h1>
+    <style type="text/css">
 
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Date</th>
+        .card:hover {
+            box-shadow: 0 10px 40px #e40046;
+        }
 
-    </tr>
-    </thead>
-    <tbody>
-    @php
-    $i=1;
-    @endphp
-
-    @foreach($orders as $order)
+    </style>
+    <h1 align="center" >Orders</h1>
 
 
-        <th scope="row">{{$i++}}</th>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test2">Pending</a></li>
+                <li class="tab col s3"><a href="#test1">Finished</a></li>
+                <li class="tab col s3"><a href="#test3">Cancelled</a></li>
+
+
+            </ul>
+        </div>
+        <div id="test1" class="col s12">
+
+            <ul class="collection" style="width: 70%;margin: 0 auto">
+
+
+                @php
+                $i=1;
+                @endphp
+
+
+                @foreach($orders as $order)
+
+                    @if($order->finish==1&&$order->finish!=2)
 
 
 
 
-        <td>   <a style="display: block ;text-decoration: none"  href="{{route('wefixer.profile',['id'=> $order->user->id])}} ">{{$order->user->name}}   </a> </td>
-        <td>   {{$order->user->email}}  </td>
 
-        <td>{{$order->updated_at->diffForHumans() }} </td>
+                    <li style="margin-top: 8px" class="collection-item avatar hovereffect z-depth-3 hoverable waves-effect waves-block waves-light">
 
 
-        </tr>
-    @endforeach
+                        <img  src="{{asset('images/avatar.png')}}"  alt="" class="circle">
+                        <a style="display: block ;text-decoration: none"  href="{{route('wefixer.profile',['id'=> $order->user->id])}} ">{{$order->user->name}}</a>
 
-    </tbody>
-</table>
+
+                        {{$order->user->email}}<br>
+                        {{$order->created_at->diffForHumans() }}
+                        <br>
+                        Finished: {{$order->updated_at->diffForHumans() }}
+                        @endif
+                    </li>
+                @endforeach
+
+
+
+            </ul>
+
+        </div>
+        <div id="test2" class="col s12">
+
+            <ul class="collection" style="width: 70%;margin: 0 auto">
+
+
+                @php
+                $i=1;
+                @endphp
+
+
+                @foreach($orders as $order)
+
+                    @if($order->finish!=1&&$order->accept!=2)
+
+
+
+
+
+                        <li style="margin-top: 8px" class="collection-item avatar hovereffect z-depth-3 hoverable waves-effect waves-block waves-light">
+
+
+                            <img  src="{{asset('images/avatar.png')}}"  alt="" class="circle">
+                            <a style="display: block ;text-decoration: none"  href="{{route('wefixer.profile',['id'=> $order->user->id])}} ">{{$order->user->name}}</a>
+
+
+                          <h5>  {{$order->user->email}}</h5><br>
+                            {{$order->created_at->diffForHumans() }}
+                            <br>
+
+                            @if($order->accept!=1)
+                            <form method="POST" action="{{ route('accept',['id' => $order->id])}}">
+                                {{ csrf_field() }}
+                                <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class="modal-action modal-close btn waves-light waves-effect">Accept</button>
+                            </form>
+                            <br>
+                                <form method="POST" action="{{ route('reject',['id' => $order->id])}}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class="modal-action modal-close btn waves-light waves-effect">Reject</button>
+                                </form>
+                                @endif
+                            @endif
+                        </li>
+                        @endforeach
+
+
+
+            </ul>
+
+    </div>
+        <div id="test3" class="col s12">
+
+            <ul class="collection" style="width: 70%;margin: 0 auto">
+
+
+                @php
+                $i=1;
+                @endphp
+
+
+                @foreach($orders as $order)
+
+                    @if($order->accept==2)
+
+
+
+
+
+                        <li style="margin-top: 8px" class="collection-item avatar hovereffect z-depth-3 hoverable waves-effect waves-block waves-light">
+
+
+                            <img  src="{{asset('images/avatar.png')}}"  alt="" class="circle">
+                            <a style="display: block ;text-decoration: none"  href="{{route('wefixer.profile',['id'=> $order->user->id])}} ">{{$order->user->name}}</a>
+
+
+                            {{$order->user->email}}<br>
+                            {{$order->created_at->diffForHumans() }}
+                            <br>
+                            <form method="POST" action="{{ route('active',['id' => $order->id])}}">
+                                {{ csrf_field() }}
+                                <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class="modal-action modal-close btn waves-light waves-effect">Make Active</button>
+                            </form>
+                            @endif
+                        </li>
+                        @endforeach
+
+
+
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+
 @endsection

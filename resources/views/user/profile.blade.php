@@ -78,7 +78,7 @@
                                             {{$us->rating}}/5
 </span>
 
-                 <span style="padding-bottom: 80px"  >
+
 
                             </div></a>
 

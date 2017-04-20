@@ -247,6 +247,10 @@
 
     $(document).ready(function(){
 
+        $(document).ready(function(){
+            $('ul.tabs').tabs();
+        });
+
         $('.carousel').carousel({
 
 

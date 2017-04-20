@@ -95,5 +95,35 @@ class WefixController extends Controller
 
     }
 
+     public function accept($id)
+     {
+
+         $book=Book::find($id);
+         $book->accept=1;
+         $book->update();
+
+         return redirect()->back();
+
+     }
+    public function reject($id)
+    {
+
+        $book=Book::find($id);
+        $book->accept=2;
+        $book->update();
+
+        return redirect()->back();
+
+    }
+    public function active($id)
+    {
+
+        $book=Book::find($id);
+        $book->accept=0;
+        $book->update();
+
+        return redirect()->back();
+
+    }
 
 }
