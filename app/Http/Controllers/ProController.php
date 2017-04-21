@@ -9,6 +9,7 @@ use App\Profession;
 
 use App\User;
 use App\Word;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -102,8 +103,28 @@ public function  show($pro)
             ->first();
         $feeding=Feed::where('workerid', $id)->get();
 
+
+
+
+       $dt=Carbon::today();
+        if(Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
+            $tom=1;
+        else
+            $tom=2;
+        if(Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
+            $tom1=1;
+        else
+            $tom1=2;
+        if($c=Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count()) {
+            $tom2 = 1;
+        }
+        else
+            $tom2=2;
+
+
+        $tt=Carbon::now();
    
-         return view('user.profile',compact('us','edit','feed','feeding','booked','r','r1','r2','r3','r4','r5'));
+       return view('user.profile',compact('us','edit','tom','tom1','tom2','tt','feed','feeding','booked','r','r1','r2','r3','r4','r5'));
 
 
 
@@ -211,19 +232,59 @@ public function  show($pro)
 
     }
 
-    public function pay($id)
+    public function pay($id,$date)
     {
+
+        $tom=0;
+        $tom1=0;
+        $tom2=0;
+        $dt=Carbon::today();
         $book = new Book();
 
         $book->worker_id =$id;
 
 
+
+
+        if($date==1)
+            $book->time = $dt->addDays(1);
+        if($date==2)
+            $book->time = $dt->addDays(2);
+        if($date==3)
+            $book->time = $dt->addDays(3);
+
         $book->user_id =Auth::user()->id;
 
-        $book->save();
-        $status=" Successfull  ......Worker Booked";
 
-        return  redirect('/users/order')->with('status',$status);
+       $dt=Carbon::today();
+       if(Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
+          $tom=1;
+
+       if(Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
+           $tom1=1;
+
+       if($c=Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
+           $tom2 = 1;
+
+
+
+        if($tom==1&&$date==1)
+
+            return redirect()->back();
+            elseif ($tom1==1&&$date==2)
+                return redirect()->back();
+        elseif ($tom2==1&&$date==3)
+            return redirect()->back();
+
+
+       else
+        {
+
+            $book->save();
+            $status = " Successfull  ......Worker Booked";
+
+            return redirect('/users/order')->with('status', $status);
+        }
 
     }
 
@@ -416,5 +477,17 @@ public function  show($pro)
             
         
     }
+
+    public function date()
+
+{
+    $dt=Carbon::now();
+$book=Book::find(22);
+    $book->time=Carbon::today();
+    $book->update();
+    echo $dt->format('l d F Y H i s');
+
+
+}
 
 }

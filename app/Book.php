@@ -2,6 +2,8 @@
 
 namespace App;
 
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
@@ -18,4 +20,6 @@ class Book extends Model
 
         return $this->belongsTo('App\User','user_id','id');
     }
+
+    protected $dates = ['time'];
 }

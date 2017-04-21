@@ -28,7 +28,7 @@ Route::get('/count/{id}', 'ProController@rater');
 
 
 
-
+Route::get('/date',['as' => 'date', 'uses' => 'ProController@date']);
 
 
 
@@ -84,7 +84,7 @@ Route::group(['middleware'=>'auth'] ,function()
           Route::delete('/user/profile/{id}',['as' => 'user.feed.delete', 'uses' => 'ProController@delete']);
 
           Route::post('/user/profile/{id}',['as' => 'user.feeding', 'uses' => 'ProController@store']);
-          Route::post('/user/order/{id}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
+          Route::post('/user/order/{id}/{date}',['as' => 'user.pay', 'uses' => 'ProController@pay']);
 
           Route::get('/users/order',['as' => 'user.order', 'uses' => 'ProController@order']);
 
@@ -93,6 +93,7 @@ Route::group(['middleware'=>'auth'] ,function()
           Route::post('/users/edited',['as' => 'user.edited', 'uses' => 'ProController@edited_profile']);
 
           Route::post('/users/finish/{id}',['as' => 'finish', 'uses' => 'ProController@finish']);
+
       });
 
 

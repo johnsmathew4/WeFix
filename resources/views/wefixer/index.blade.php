@@ -48,6 +48,7 @@
 
 
                         {{$order->user->email}}<br>
+                        <h5> {{  $order->time->format('d F Y ')}}</h5><br>
                         {{$order->created_at->diffForHumans() }}
                         <br>
                         Finished: {{$order->updated_at->diffForHumans() }}
@@ -85,7 +86,8 @@
                             <a style="display: block ;text-decoration: none"  href="{{route('wefixer.profile',['id'=> $order->user->id])}} ">{{$order->user->name}}</a>
 
 
-                          <h5>  {{$order->user->email}}</h5><br>
+                            {{$order->user->email}}<br>
+                            <h5> {{  $order->time->format('d F Y ')}}</h5><br>
                             {{$order->created_at->diffForHumans() }}
                             <br>
 
@@ -135,6 +137,7 @@
 
 
                             {{$order->user->email}}<br>
+                            <h5> {{  $order->time->format('d F Y ')}}</h5><br>
                             {{$order->created_at->diffForHumans() }}
                             <br>
                             <form method="POST" action="{{ route('active',['id' => $order->id])}}">

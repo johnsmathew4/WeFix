@@ -40,6 +40,7 @@
 
                 <a style="display: block ;text-decoration: none"  href="{{route('user.profile',['id'=> $order->worker->id])}} "> {{$i++}}.  {{$order->worker->name}}</a>
                 {{$order->worker->profession->name}}<br>
+             <h5> {{  $order->time->format('d F Y ')}}</h5><br>
                 Booked :{{$order->created_at->diffForHumans() }}
                @if($order->finish==1)
                    <br>

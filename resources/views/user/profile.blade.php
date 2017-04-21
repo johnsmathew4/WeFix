@@ -42,7 +42,7 @@
                         <span style="color: gray;font-size: 80%">Location</span> <h5>  {{$us->location->location}}</h5>
                         <span style="color: gray;font-size: 80%">Profession</span> <h5>  {{$us->profession->name}}</h5>
                         <span style="color: gray;font-size: 80%">Contact</span><h5> {{$us->number}} </h5>
-                        <a href="#ratings"><div   style="height: 38px;background-color: #e40046;width:205px; border-radius: 5px;"><span style="color: white;text-align: center;font-size: 20px;font-weight: bold;padding-left: 10px;">
+                        <a href="#ratings"><div   style="height: 38px;background-color: #e40046;width:220px; border-radius: 5px;"><span style="color: white;text-align: center;font-size: 20px;font-weight: bold;padding-left: 10px;">
                     @php
                                     $dd=$us->rating - floor($us->rating);
 
@@ -108,9 +108,38 @@
 
                         </div>
                         <div class="modal-footer">
-                            <form method="POST" action="{{ route('user.pay',['id' => $us->id])  }}">
+                            <form method="POST" action="{{ route('user.pay',['id' => $us->id,'date' =>1])  }}">
                                 {{ csrf_field() }}
-                                <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class="modal-action modal-close btn waves-light waves-effect">Check Out</button>
+
+                                @if($tom==1)
+                                <a  style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 btn red" onclick="Materialize.toast('Already Booked!', 4000)"> <span ><i class="material-icons">remove_shopping_cart</i></span>Tommorrow!</a>
+                                @else
+                                    <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 modal-action modal-close btn waves-light waves-effect"><span ><i class="material-icons">shopping_cart</i> </span>Tommorrow</button>
+                                 @endif
+                            </form>
+                            <form method="POST" action="{{ route('user.pay',['id' => $us->id,'date' =>2])  }}">
+                                {{ csrf_field() }}
+
+                                @if($tom1==1)
+                                    <a  style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 btn red" onclick="Materialize.toast('Already Booked!', 4000)"> <span ><i class="material-icons">remove_shopping_cart</i></span>{{$tt->addDays(2)->format('d F Y ')}}!</a>
+                                @else
+                                    <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 modal-action modal-close btn waves-light waves-effect">{{$tt->addDays(2)->format('d F Y ')}}</button>
+                                @endif
+
+                            </form>
+                            <form method="POST" action="{{ route('user.pay',['id' => $us->id,'date' =>3])  }}">
+                                {{ csrf_field() }}
+
+
+                                @if($tom2==1)
+                                    <a  style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 btn red" onclick="Materialize.toast('Already Booked!', 4000)"> <span ><i class="material-icons">remove_shopping_cart</i></span>{{$tt->addDay()->format('d F Y ')}}!</a>
+                                @else
+                                    <button type="submit" style="margin-right:300px;background-color: #e40046;color: white;" class=" s3 modal-action modal-close btn waves-light waves-effect">{{$tt->addDay()->format('d F Y ')}}</button>
+                                @endif
+
+
+
+
                             </form>
                         </div>
                     </div>
