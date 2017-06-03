@@ -53,10 +53,14 @@ class Admin extends Controller
 
     public function  location_delete($id)
     {
+        if(User::whereLocationId($id)->count()) {
+
+            return redirect('/admin/location')->with('status','fgfg');
+        }
         $loc=Location::find($id);
         $loc->delete();
 
-        return redirect()->back(); 
+        return redirect('/admin/location');
             
     }
 

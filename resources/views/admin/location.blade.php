@@ -122,8 +122,19 @@
             $('#modal1').modal('open');      });": "" !!}
 
 
+ @if (session('status'))
+            Materialize.toast('Location  Used', 4000);
 
+        @endif
 
 
     </script>
 @endsection
+
+
+
+
+
+
+
+

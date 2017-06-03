@@ -232,9 +232,12 @@ public function  show($pro)
 
     }
 
-    public function pay($id,$date)
+    public function pay($id,$date,Request $request)
     {
 
+        if($date==4&& $request['select']=='')
+            return 'fail';
+       $sel=0;
         $tom=0;
         $tom1=0;
         $tom2=0;
@@ -252,6 +255,8 @@ public function  show($pro)
             $book->time = $dt->addDays(2);
         if($date==3)
             $book->time = $dt->addDays(3);
+        if($date==4)
+            $book->time = $request['select'];
 
         $book->user_id =Auth::user()->id;
 
@@ -265,7 +270,8 @@ public function  show($pro)
 
        if($c=Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$dt->addDay()->toDateString())->count())
            $tom2 = 1;
-
+        if(Book::where('accept','<>','2')->where('worker_id', $id)->where('time',$request['select'])->count())
+           $sel=1;
 
 
         if($tom==1&&$date==1)
@@ -275,7 +281,8 @@ public function  show($pro)
                 return redirect()->back();
         elseif ($tom2==1&&$date==3)
             return redirect()->back();
-
+       elseif($sel==1)
+          return 'tt';
 
        else
         {
@@ -346,7 +353,7 @@ public function  show($pro)
        if($not)
        {
            if($feedrate>0)
-               $feedrate = $feedrate/$c;
+               $feedrate = $feedrate/$c-2;
                else
                    $feedrate = $feedrate/$c+5;
 
