@@ -120,17 +120,17 @@
 
                             @if($i<=$us->rating)
 
-                                <i  style="color:red;"   class="material-icons">star</i>
+                                <i style="color:#e40046;" class="material-icons">star</i>
                             @else
 
                                 @if($dd>0.3)
                                     @if($dd=0)
                                     @endif
 
-                                    <i  style="color:red;"   class="material-icons">star_half</i>
+                                    <i  style="color:#e40046;"   class="material-icons">star_half</i>
 
                                 @else
-                                    <i  style="color:red;"   class="material-icons">star_border</i>
+                                    <i  style="color:#e40046;"   class="material-icons">star_border</i>
                                 @endif
 
 
@@ -356,17 +356,17 @@
 
                         @if($i<=$f->rating)
 
-                            <i  style="color:red;"   class="material-icons">star</i>
+                            <i  style="color:#e40046;"   class="material-icons">star</i>
                         @else
 
                             @if($dd>0.3)
                                 @if($dd=0)
                                 @endif
 
-                                <i  style="color:red;"   class="material-icons">star_half</i>
+                                <i  style="color:#e40046;"   class="material-icons">star_half</i>
 
                             @else
-                                <i  style="color:red;"   class="material-icons">star_border</i>
+                                <i  style="color:#e40046;"   class="material-icons">star_border</i>
                             @endif
 
 
@@ -395,13 +395,19 @@
 
 @endif
 
-
+{{$tt}}
 
 
 @endsection
 
 
 @section('jquery')
+
+@php 
+
+ $tt->subMonth();   
+
+@endphp
     <script type="text/javascript">
 
         $(document).ready(function(){
@@ -410,6 +416,7 @@
                 monthsFull: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
                 format: 'yyyy-mm-dd',
                 formatSubmit: 'yyyy-mm-dd',
+
 
     min: new Date({{$tt->addDay()->format('Y,m,d')}}),
     max: new Date({{$tt->addDays(17)->format('Y,m,d')}}),
@@ -445,7 +452,7 @@ $('.modal').modal();
                             Materialize.toast('Order Successfully', 4000);
                         window.setTimeout(function() {
                             window.location.href = '{{ url('/users/order') }}';
-                        }, 4500);}
+                        }, 4000);}
                     },
 
 

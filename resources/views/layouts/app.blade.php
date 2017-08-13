@@ -3,34 +3,32 @@
 <head>
     <title>Wefix</title>
     <!--Import Google Icon Font-->
-   <style type="text/css">
+    <style type="text/css">
 
-       /* fallback */
-       @font-face {
-           font-family: 'Material Icons';
-           font-style: normal;
-           font-weight: 400;
-           src: local('Material Icons'), local('MaterialIcons-Regular'), url({{asset('images/mat.woff2')}}) format('woff2');
-       }
+        /* fallback */
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Material Icons'), local('MaterialIcons-Regular'), url({{asset('images/mat.woff2')}}) format('woff2');
+        }
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
 
-       .material-icons {
-           font-family: 'Material Icons';
-           font-weight: normal;
-           font-style: normal;
-           font-size: 24px;
-           line-height: 1;
-           letter-spacing: normal;
-           text-transform: none;
-           display: inline-block;
-           white-space: nowrap;
-           word-wrap: normal;
-           direction: ltr;
-           -webkit-font-feature-settings: 'liga';
-           -webkit-font-smoothing: antialiased;
-       }
-
-
-       </style>
+    </style>
 
 
 
@@ -48,6 +46,10 @@
             background-color: #e40046;
             font-size: 8px;
             padding-left: 10px;
+
+        }
+        .collection-item:hover {
+            box-shadow: 0 6px 40px grey;
         }
 
         .parallax-container {
@@ -66,8 +68,8 @@
 
 
     </style>
-
 @yield('css')
+
 </head>
 
 <body>
@@ -90,7 +92,7 @@
 <ul class="side-nav" id="mobile-demo">
 
     <li ><a style="font-size: 17px;" href="{{ url('/') }}"><i class="material-icons left">home</i>Home</a></li>
-    <li><a style=";font-size: 17px;" href="{{ url('/about') }}"><i class="material-icons left">people</i>About Us</a></li>
+    <li><a style=";font-size: 17px;" href="{{ url('/') }}#about"><i class="material-icons left">people</i>About Us</a></li>
     @if (Auth::guest())
 
         <li><a class="waves-effect waves-light" style="font-size: 17px;" href="{{ url('/login') }}"><i class="material-icons left">input</i>Login</a></li>
@@ -119,18 +121,18 @@
             <li><a class="waves-effect waves-light"  href="{{ url('/admin') }}"><i class="material-icons left">input</i>Dashboard</a></li>
 
         @endif
-            @if(Auth::user()->role_id==0)
+        @if(Auth::user()->role_id==0)
 
-                <li><a class="waves-effect waves-light"  href="{{ url('/wefixer') }}"><i class="material-icons left">input</i>Orders</a></li>
-                <li><a class="waves-effect waves-light"  href="{{ url('/wefix/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+            <li><a class="waves-effect waves-light"  href="{{ url('/wefixer') }}"><i class="material-icons left">input</i>Orders</a></li>
+            <li><a class="waves-effect waves-light"  href="{{ url('/wefix/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
 
-            @endif
-            @if(Auth::user()->role_id==1)
+        @endif
+        @if(Auth::user()->role_id==1)
 
-                <li><a class="waves-effect waves-light"  href="{{ url('/users/order') }}"><i class="material-icons left">input</i>Orders</a></li>
-                <li><a class="waves-effect waves-light"  href="{{ url('/users/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
+            <li><a class="waves-effect waves-light"  href="{{ url('/users/order') }}"><i class="material-icons left">input</i>Orders</a></li>
+            <li><a class="waves-effect waves-light"  href="{{ url('/users/edit') }}"><i class="material-icons left">edit</i>Edit Profile</a></li>
 
-            @endif
+        @endif
 
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -163,9 +165,9 @@
 
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper" style="padding-left: 10px">
 
-            <a class="brand-logo"><i class="material-icons right">build</i>WeFix</a>
+            <a class="brand-logo"><i class="material-icons right">build</i><span style="font-weight: bold">WeFix</span></a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul  class="right hide-on-med-and-down">
                 <li ><a style="color:#ffffff;font-size: 17px;" href="{{ url('/') }}"><i class="material-icons left">home</i>Home</a></li>
@@ -174,7 +176,7 @@
                     <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/login') }}"><i class="material-icons left">input</i>Login</a></li>
                 @else
 
-                @if(Auth::user()->role_id==2)
+                    @if(Auth::user()->role_id==2)
 
                         <li><a class="waves-effect waves-light" style="color:#ffffff;font-size: 17px;" href="{{ url('/admin') }}"><i class="material-icons left">input</i>Dashboard</a></li>
 
@@ -194,7 +196,7 @@
                     <li><a class="dropdown-button" data-activates="dropdown2">
                             {{ Auth::user()->email }}<i class="material-icons right">arrow_drop_down</i></a>
                 @endif
-                <li><a style="color:#ffffff;font-size: 17px;" href="{{ url('/about') }}"><i class="material-icons left">people</i>About Us</a></li>
+                <li><a style="color:#ffffff;font-size: 17px;" href="{{ url('/') }}#about"><i class="material-icons left">people</i>About Us</a></li>
 
             </ul>
 
@@ -238,6 +240,9 @@
 
     });
     $(document).ready(function(){
+        $(document).ready(function(){
+            $('ul.tabs').tabs();
+        });
         $(".button-collapse").sideNav();
         $('.parallax').parallax();
     });
@@ -246,10 +251,6 @@
 
 
     $(document).ready(function(){
-
-        $(document).ready(function(){
-            $('ul.tabs').tabs();
-        });
 
         $('.carousel').carousel({
 
@@ -268,7 +269,7 @@
         autoplay()
         function autoplay() {
             $('.carousel').carousel('next');
-            setTimeout(autoplay, 3600);
+            setTimeout(autoplay, 4600);
         }
 
     });

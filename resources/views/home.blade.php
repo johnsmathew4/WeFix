@@ -4,10 +4,11 @@
 
 @section('content')
     <style type="text/css">
-        .parallax-container h2
+        .parallax-container h3
         {
             text-align: center;
             color: white;
+            font-weight: bolder;
 
         }
 
@@ -106,6 +107,14 @@
             -webkit-transition-delay:.2s;
             transition-delay:.2s;
         }
+        .white-text{
+
+            margin-top:
+        }
+        .comments
+        {
+            margin-top: 80px;
+        }
 
 
     </style>
@@ -137,12 +146,12 @@
     </div>
 
 
-    <div class="container-fluid"style="margin-left: 80px">
+    <div class="container-fluid"style="margin-left:">
 
 
         <div class="row " style="width: 95%;">
 
-            <div class="col 13">
+            <div class="col s12 m3">
                 <div class="hovereffect z-depth-5 hoverable waves-effect waves-block waves-light" style="height: 250px;width: 250px;">
                     <img class="img-responsive" src="images/carpenter21.jpg" style="height:250px;">
 
@@ -154,7 +163,7 @@
                 </div>
 
             </div>
-            <div class="col 13">
+            <div class="col s12 m3">
                 <div class="hovereffect z-depth-5 hoverable waves-effect waves-block waves-light" style="height: 250px;width: 250px;">
                     <img class="img-responsive" src="images/cleaner22.jpg" style="height:250px;">
 
@@ -166,7 +175,7 @@
                 </div>
 
             </div>
-            <div class="col 13">
+            <div class="col s12 m3">
                 <div class="hovereffect z-depth-5 hoverable waves-effect waves-block waves-light" style="height: 250px;width: 250px;">
                     <img class="img-responsive" src="images/Plumbing21.jpg" style="height:250px;">
 
@@ -178,7 +187,7 @@
                 </div>
 
             </div>
-            <div class="col 13">
+            <div class="col s12 m3">
                 <div class="hovereffect z-depth-5 hoverable waves-effect waves-block waves-light" style="height: 250px;width: 250px;">
                     <img class="img-responsive" src="images/painter21.jpg" style="height:250px;">
 
@@ -196,6 +205,38 @@
 
         </div>
     </div>
+    <div class="parallax-container">
+
+
+        <div class="parallax"><img style="width: 60%; " src="images/parallax4.jpg"></div>
+        <h3 style="margin-top: 400px">This is what our customers say!</h3>
+
+    </div>
+
+    <div class="carousel carousel-slider center" style="height: 300px;background-color:#bdbdbd;"  data-indicators="true">
+
+        <div class="carousel-item  white-text" href="#one!">
+            <h2 class="comments">-Vijay</h2>
+            <p  class="white-text">"Problem solved within minutes.Thanks to Wefix team"</p>
+        </div>
+        <div class="carousel-item 3 white-text" href="#two!">
+            <h2 class="comments">-John</h2>
+            <p class="white-text">"Efficient and Ontime"</p>
+        </div>
+        <div class="carousel-item  white-text" href="#three!">
+            <h2 class="comments">-Jane</h2>
+            <p class="white-text">"Now a worker is just a click away.Kudos to the Wefix team for making it possible!!"</p>
+        </div>
+
+    </div>
+
+    <div class="parallax-container">
+
+
+        <div class="parallax"><img style="width: 60%; " src="images/parallax6.jpg"></div>
+
+
+    </div>
 
 
 
@@ -203,20 +244,20 @@
 
 
 
-    <div class="container-fluid " style="color:#e40046 " >
-        <footer class="page-footer" style="background-color:white;">
+    <div id="about" class="container-fluid " style="color:#e40046 " >
+        <footer class="page-footer" style="background-color:#fafafa;">
             <div class="container ">
                 <h3 >Why Choose Us? </h3>
 
                 <div class="row">
-                    <div class="col l4">
+                    <div class="col s12 m4">
                         <h4 style="color:#e40046 ">Easy Booking</h4>
                         <i class="medium material-icons" style="color:#e40046;">thumb_up</i></div>
 
-                    <div class="col l4">
+                    <div class="col s12 m4">
                         <h4 style="color:#e40046 ">All In One</h4>
                         <i class="medium material-icons" style="color:#e40046;">language</i></div>
-                    <div class="col l4">
+                    <div class="col s12 m4">
                         <h4 style="color:#e40046 ">On Time Service</h4>
                         <i class="medium material-icons" style="color:#e40046;">schedule</i></div>
 
@@ -227,7 +268,7 @@
             </div>
             <div class="footer-copyright" style="background-color:#e40046 ">
                 <div class="container">
-                    ©COPYRIGHT WEFIX SOLUTIONS PVT LTD 2015. ALL RIGHTS RESERVED
+                    Â©COPYRIGHT WEFIX SOLUTIONS PVT LTD 2016. ALL RIGHTS RESERVED
                     <a class="grey-text text-lighten-4 right" href="#!">More Details</a>
                 </div>
             </div>
